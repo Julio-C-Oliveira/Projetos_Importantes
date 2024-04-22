@@ -7,7 +7,7 @@ trees_by_client,round,sim_time,mse1,pearson_corr1,mse2,pearson_corr2,mse3,pearso
 import sys
 
 trees_by_client = 10
-threshold = 0.55
+threshold = 0.3 # Original 0.55
 strategy = 'random' #'best_trees'
 output_file = f'data/simulation/{strategy}_strategy_sim.csv'
 
