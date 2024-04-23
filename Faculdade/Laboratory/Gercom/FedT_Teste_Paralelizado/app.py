@@ -23,9 +23,9 @@ async def main():
     NUMBER_OF_CLIENTS = 4
     
     for round in range(ROUNDS):
-    	with open("registro_para_teste.txt", "a") as f:
-        f.write(f"\nRound: {round} | Strategy: {strategy}\n")
-        
+        with open("registro_para_teste.txt", "a") as f:
+            f.write(f"\nRound: {round} | Strategy: {strategy}\n")
+
         # Fase 1: Iniciar o modelo global
         server = GlobalServer(trees_by_client)
 
@@ -44,7 +44,7 @@ async def main():
             MSE_Clients = sum(result[1] for result in results) / NUMBER_OF_CLIENTS
             pearsonS = sum(result[2][0] for result in results) / NUMBER_OF_CLIENTS
             print(f"\nClientes MSE: {MSE_Clients}\nClientes Pearson: {pearsonS}\n")
-            
+
             with open("registro_para_teste.txt", "a") as f:
                 f.write(f"Epoch: {epoch}\n")
                 f.write(f"MSE: {MSE_Clients}\n")
@@ -54,11 +54,9 @@ async def main():
             # Fase 4: Agregar treinamento
             server.aggregate_fit([client.trees for client in clients], strategy, threshold)
 
-
-
         trees_by_client += TREES_ITER
         print('o tamanho do modelo é : ', sys.getsizeof(server.model))
-        
+
         with open("registro_para_teste.txt", "a") as f:
             f.write(f"#########################")
             f.write(f"\n")
