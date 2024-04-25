@@ -12,7 +12,7 @@ TREES_ITER = 10
 # Parametros: =======================================================================================================
 #####################################################################################################################
 
-EPOCHS = 5
+EPOCHS = 3
 ROUNDS = 60
 DATASET = 0
 NUMBER_OF_CLIENTS = 4
@@ -94,6 +94,7 @@ for round in range(ROUNDS):
         server.aggregate_fit([client1.trees, client2.trees, client3.trees, client4.trees], strategy, executor, threshold)
 
     trees_by_client += TREES_ITER
+    print(trees_by_client)
     print('o tamanho do modelo é : ', sys.getsizeof(server.model))
 
 with open("registro_para_teste.txt", "a") as f:

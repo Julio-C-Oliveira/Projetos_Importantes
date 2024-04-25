@@ -65,6 +65,8 @@ Igualando as condições do FedAVG e do FedT:
 - Divisão do Dataset entre Clientes:
 - Número de Clientes:
 
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Testes de Funcionalidades/FedT_Teste_Paralelizado" && python3 rodar_test.py
+
 cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd test/Federated_Random_Forest_V1Teste && python3 rodar_test.py
 
 cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test/Client_Server" && sh run.sh
