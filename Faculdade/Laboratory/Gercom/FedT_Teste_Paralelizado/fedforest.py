@@ -67,7 +67,7 @@ class FedForest():
 
         return best_trees
 
-    def aggregate_fit_best_trees_threshold_strategy(self, best_forests: list[list[DecisionTreeRegressor]], threshold: float):
+    def aggregate_fit_best_trees_threshold_strategy(self, best_forests: list[list[DecisionTreeRegressor]], threshold: float, executor):
         """
         Essa estratégia ordena as árvores de cada floresta com base no sua correlação de pearson.
         Em seguida, coleta todas as árvores cujo correlação é maior que um threshold e as agrega em uma nova floresta,
@@ -76,7 +76,7 @@ class FedForest():
         X_valid, y_valid = utils.load_server_side_validation_data()
         best_trees = []
 
-        for forest in best_forests:
+        def selection_clients(forest):
             forest_trees = forest
             trees_sorted = sorted(forest_trees, key=lambda tree: pearsonr(y_valid, tree.predict(X_valid)))
             
@@ -84,7 +84,26 @@ class FedForest():
             selected_trees = [tree for tree in trees_sorted if pearsonr(y_valid, tree.predict(X_valid))[0] > threshold]
             
             best_trees.extend(selected_trees)
+            return best_trees
 
+        print(f"\n######################\nNúmero de Florestas: {len(best_forests)}\nNúmero de Árvores por Floresta: {len(best_forests[0])}\n######################\n")
+
+        future_forest_1 = executor.submit(selection_clients, best_forests[0])
+        future_forest_2 = executor.submit(selection_clients, best_forests[1])
+        future_forest_3 = executor.submit(selection_clients, best_forests[2])
+        future_forest_4 = executor.submit(selection_clients, best_forests[3])
+
+        selected_trees_1 = future_forest_1.result()
+        selected_trees_2 = future_forest_2.result()
+        selected_trees_3 = future_forest_3.result()
+        selected_trees_4 = future_forest_4.result()
+
+        best_trees.extend(selected_trees_1)
+        best_trees.extend(selected_trees_2)
+        best_trees.extend(selected_trees_3)
+        best_trees.extend(selected_trees_4)
+
+        print("Fim da Execução da Agregação")
         return best_trees
 
     def aggregate_fit_random_trees_strategy(self, best_forests):

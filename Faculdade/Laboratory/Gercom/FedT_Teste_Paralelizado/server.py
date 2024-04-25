@@ -16,13 +16,13 @@ class GlobalServer():
         self.global_trees = self.model.estimators_
         self.strategy = FedForest(self.model)
 
-    def aggregate_fit(self, best_forests: list[RandomForestRegressor], strategy: str, threshold=0):
+    def aggregate_fit(self, best_forests: list[RandomForestRegressor], strategy: str, executor, threshold=0):
         if strategy == 'random':
             self.model.estimators_ = self.strategy.aggregate_fit_random_trees_strategy(best_forests)
         elif strategy == 'best_trees':
             self.model.estimators_ = self.strategy.aggregate_fit_best_trees_strategy(best_forests)
         elif strategy == 'threshold':
-            self.model.estimators_ = self.strategy.aggregate_fit_best_trees_threshold_strategy(best_forests, threshold)
+            self.model.estimators_ = self.strategy.aggregate_fit_best_trees_threshold_strategy(best_forests, threshold, executor)
         elif strategy == 'best_forests':
             self.model.estimators_ = self.strategy.aggregate_fit_best_forest_strategy(best_forests)
                 
