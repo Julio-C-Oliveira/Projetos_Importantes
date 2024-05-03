@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package multclient;
+
+service Tokisaki_Kurumi {
+    rpc aggregate_trees (Tree_CLient) returns (stream Tree_Server);
+}
+
+message Tree_CLient {
+    int32 client_ID = 1;
+    bytes serialised_tree = 2;
+}
+
+message Tree_Server {
+    bytes serialised_tree = 1;
+}

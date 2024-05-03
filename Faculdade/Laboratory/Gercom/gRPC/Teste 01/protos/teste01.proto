@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package teste;
+
+service GiornoGiovanna {
+    rpc SayYume (SoxRequest) returns (SoxReply);
+    rpc Combo (SoxRequest) returns (stream SoxReply);
+    rpc KingCrimson (stream SoxRequest) returns (SoxDelayedReply);
+    rpc GoldenExperienceRequiem (stream SoxRequest) returns (stream SoxReply);
+}
+
+message SoxRequest {
+    string name = 1;
+    string greeting = 2;
+}
+  
+message SoxReply {
+    string message = 1;
+}
+
+message SoxDelayedReply {
+    string message = 1;
+    repeated SoxRequest request = 2;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package teste02;
+
+service Rias {
+    rpc receive_tree (Tree) returns (stream Tree);
+}
+
+message Tree {
+    int32 client_ID = 1;
+    bytes serialised_tree = 2;
+}
