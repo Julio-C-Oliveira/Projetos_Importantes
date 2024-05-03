@@ -1,0 +1,84 @@
+01 - Instalar o Pip:
+sudo apt-get update
+sudo apt install python3-pip
+
+02 - Instalar o Virtual Env:
+sudo pip install virtualenv
+
+03.1 - Criando um ambiente virtual:
+virtualenv (nome do projeto sem os parenteses)
+
+03.2 - Ativando o ambiente virtual:
+source (nome do projeto sem os parenteses)/bin/activate
+
+03.3 Opcional - Desativar o ambiente virtual:
+deactivate
+
+03.4 Opcional - Desfazer o ambiente virtual:
+rm -r (nome do projeto sem os parenteses)
+
+00 - Instalando as Dependências do Projeto:
+
+sudo pip install numpy
+
+sudo pip install scikit-learn
+
+sudo pip install scipy
+=====================================================
+
+Test 01:
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" 
+source test/bin/activate
+cd test/Lucas_Federated_Random_Forest
+python3 app.py
+python3 rodar_test.py
+
+os.sytem("sudo shutdown -h +20")
+
+# Rodar test do código do Lucas
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd test/Federated_Random_Forest_V1 && python3 rodar_test.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd test/Federated_Random_Forest_V1Teste && python3 rodar_test.py
+
+# Ambiente virtual do FedAVG neural_network
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate
+
+# Rodar o código de exemplo do Flower
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test" && python3 main.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test" && python3 pytorch_neural_network.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test" && python3 flower_neural_network.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test/Client_Server" && sh run.sh
+
+===================================================
+
+Igualando as condições do FedAVG e do FedT:
+- Número de Epochs:
+- Número de Rounds:
+- Dataset:
+- Divisão do Dataset entre Clientes:
+- Número de Clientes:
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Testes de Funcionalidades/FedT_Teste_Paralelizado" && python3 rodar_test.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd test/Federated_Random_Forest_V1Teste && python3 rodar_test.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test/Client_Server" && sh run.sh
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source neural_network/bin/activate && cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual/neural_network/test/Client_Server" && python3 rodar_test.py
+
+cd "/home/juliocoliveira/Área de Trabalho/Testes Socket/Teste 01" && python3 Test_Socket.py
+ss -ln | grep 8000
+cd "/home/juliocoliveira/Área de Trabalho" && python3 Test_Socket_Client.py
+
+
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd ../../../ && 
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd ../../../ && cd "/home/juliocoliveira/Área de Trabalho/Testes Socket/Teste 02" && python3 Test_Socket_Server.py
+ss -ln | grep 8000
+cd "/home/juliocoliveira/Área de Trabalho/Random Forest Federated/ambiente_virtual" && source test/bin/activate && cd ../../../ && cd "/home/juliocoliveira/Área de Trabalho/Testes Socket/Teste 02" && python3 Test_Socket_Client.py
