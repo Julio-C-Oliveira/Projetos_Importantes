@@ -19,5 +19,9 @@ public class Main {
         ArrayList<Integer> lista1 = Utilitarios.adicionarValoresPorIntervalo(1, 5);
         ArrayList<Integer> lista2 = Utilitarios.adicionarValoresPorIntervalo(6, 10);
         System.out.println(Utilitarios.unir(lista1, lista2));
+
+        int[] lista01 = {1, 2, 3, 4, 5};
+        int[] lista02 = {2, 4, 6, 7, 8, 9, 10};
+        Utilitarios.exibirLista(Utilitarios.unir(lista01, lista02));
     }
 }
