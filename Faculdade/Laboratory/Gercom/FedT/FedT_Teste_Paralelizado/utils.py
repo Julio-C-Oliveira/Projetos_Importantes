@@ -42,6 +42,9 @@ def load_house():
         X = energy_data_complete[columns_for_training]
         y = energy_data_complete["Appliances"]
 
+        print(len(X))
+        print(len(y))
+
     elif path == "data/mnist_train.csv":
         mnist_train = pd.read_csv("data/mnist_train.csv")
         mnist_test = pd.read_csv("data/mnist_test.csv")
@@ -76,3 +79,6 @@ def partition(X: np.ndarray, y: np.ndarray, num_partitions: int):
     return list(
         zip(np.array_split(X, num_partitions), np.array_split(y, num_partitions))
     )
+
+if __name__ == "__main__":
+    load_house()

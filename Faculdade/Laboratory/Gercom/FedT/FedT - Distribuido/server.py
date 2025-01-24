@@ -12,8 +12,18 @@ import fedT_pb2_grpc
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 
-#IP = "10.126.1.109"
-IP = "192.168.1.214"
+def importar_parametros_de_teste():
+    with open("/home/juliocoliveira/Área de Trabalho/Rede Distribuida/gRPC/FedT - Distribuido/parametros_de_teste.txt", "r") as f:
+        file = f.read()
+    file = file.split("\n")
+    print(f"Strategy: {file[0]}\nRound: {file[1]}")
+    return file
+
+
+parametros = importar_parametros_de_teste()
+
+IP = "10.126.1.109"
+#IP = "192.168.1.214"
 PORTA = "50051"
 
 ##########################################################################
@@ -21,7 +31,7 @@ PORTA = "50051"
 ##########################################################################
 # O random se sai bem com 270
 # O threshold se sai bem a partir de 520
-STRATEGY = 'threshold'
+STRATEGY = parametros[0]
 THRESHOLD = 0.34
 TREES_BY_CLIENT = 300 #Original 260, # 3 Clientes: ; 4 Clientes: 480.
 INCREASE_TREES = 10

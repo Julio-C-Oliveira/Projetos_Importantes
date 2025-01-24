@@ -18,14 +18,44 @@ class HouseClient():
 
         # Split train set into 4 partitions and randomly use one for training.
         (self.X_train, self.y_train) = utils.partition(X_train, y_train, NUMBER_OF_PARTITIONS)[ID]
+        # (self.X_test, self.y_test) = utils.partition(self.X_test, self.y_train, NUMBER_OF_PARTITIONS)[ID]
+
+        print(f"Client {ID}:\nData: {self.X_train}\nLabel: {self.y_train}")
 
         # Initialize local model and set initial_parameters
         self.local_model = RandomForestRegressor(n_estimators=trees_by_client)
         utils.set_initial_params(self.local_model, self.X_train, self.y_train) 
         self.trees = self.local_model.estimators_
+        self.ID = ID
 
     def get_global_parameters(self, global_model: RandomForestRegressor):
             return utils.get_model_parameters(global_model)
+
+    # 
+    def capture_predictions(self, real_value, prediction_value):
+        path = "/home/juliocoliveira/Artigos/Glaucio/porDispositivo"
+        #path = "/home/juliocoliveira/Área de Trabalho/Rede Distribuida/gRPC/FedT - Distribuido/client_New_Test"
+
+        num_pred = len(prediction_value)
+        csv = f"Real_Value,Predction_Value, {num_pred}\n"
+
+        real_value = np.array(real_value)
+
+        for i in range(num_pred):
+            # [real value[i], predction[i]]
+            csv += f"[{real_value[i]},{prediction_value[i]}],"
+        
+        def importar_parametros_de_teste():
+            with open("/home/juliocoliveira/Área de Trabalho/Rede Distribuida/gRPC/FedT - Distribuido/parametros_de_teste.txt", "r") as f:
+                file = f.read()
+            file = file.split("\n")
+            print(f"Strategy: {file[0]}\nRound: {file[1]}")
+            return file
+        
+        parametros = importar_parametros_de_teste()
+
+        with open(f"{path}/client_{self.ID}_{parametros[0]}_{parametros[1]}.csv", "w") as f:
+            f.write(csv)
 
     def evaluate(self, global_model: RandomForestRegressor):
         global_model_trees = self.get_global_parameters(global_model)
@@ -49,5 +79,7 @@ class HouseClient():
              pearson_corr, p_value = global_model_pearson_corr, global_model_p_value
              self.trees = global_model_trees
              utils.set_model_params(self.local_model, self.trees)
+
+        self.capture_predictions(self.y_test, self.local_model.predict(self.X_test))
 
         return absolute_error, squared_error, (pearson_corr, p_value), self.trees

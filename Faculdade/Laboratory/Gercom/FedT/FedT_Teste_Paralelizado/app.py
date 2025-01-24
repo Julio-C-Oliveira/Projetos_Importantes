@@ -1,8 +1,13 @@
+import time
+import numpy as np
+
+start_time = time.time()
+
 import sys
 
 trees_by_client = 10
 threshold = 0.39 # Original 0.55
-strategy = 'threshold' #'best_trees'
+strategy = "random" # 'threshold' #'best_forests' #'best_trees' #'random'
 output_file = f'data/simulation/{strategy}_strategy_sim.csv'
 
 MAX_TREES_NUM = 260 # 260 original
@@ -12,10 +17,11 @@ TREES_ITER = 10
 # Parametros: =======================================================================================================
 #####################################################################################################################
 
-EPOCHS = 3
-ROUNDS = 60
+EPOCHS = 5
+ROUNDS = 40 # 40
 DATASET = 0
 NUMBER_OF_CLIENTS = 4
+NUCLEOS = 4
 
 from server import GlobalServer
 from client import HouseClient
@@ -28,7 +34,32 @@ def create_client(trees_by_client, NUMBER_OF_CLIENTS):
 def evaluate_client(client, server_model):
     return client.evaluate(server_model)
 
-executor = ThreadPoolExecutor(max_workers=4)
+def convert_listas_to_array(listas):
+    return [np.array(lista) for lista in listas]
+
+def average_real_value_and_prediction(y_test_four_clients, predictions_four_clients):
+    y_test_four_clients = convert_listas_to_array(y_test_four_clients)
+
+    y_test_list = []
+    prediction_list = []
+
+    for i in range(len(y_test_four_clients[0])):
+        y_test_avg = 0
+        prediction_avg = 0
+        for client in range(len(y_test_four_clients)):
+            y_test_avg += y_test_four_clients[client][i]
+            prediction_avg += predictions_four_clients[client][i]
+
+        y_test_avg /= len(y_test_four_clients)
+        prediction_avg /= len(predictions_four_clients)
+
+        y_test_list.append(y_test_avg)
+        prediction_list.append(prediction_avg)
+
+    return y_test_list, prediction_list
+            
+
+executor = ThreadPoolExecutor(max_workers=NUCLEOS)
 
 for round in range(ROUNDS):
     with open("registro_para_teste.txt", "a") as f:
@@ -78,6 +109,8 @@ for round in range(ROUNDS):
         print(f'Client_id {client3.id} - erro quadrático médio: {squared_error3} - correlação de pearson: {pearson_corr3}')
         print(f'Client_id {client4.id} - erro quadrático médio: {squared_error4} - correlação de pearson: {pearson_corr4}')
 
+        # y_test_list, prediction_list = average_real_value_and_prediction([y_test1, y_test2, y_test3, y_test4],[predictions1, predictions2, predictions3, predictions4])
+
         MSE_Clients = squared_error1 + squared_error2 + squared_error3 + squared_error4
         MSE_Clients = MSE_Clients/NUMBER_OF_CLIENTS
         pearsonS = pearson_corr1 + pearson_corr2 + pearson_corr3 + pearson_corr4
@@ -86,9 +119,12 @@ for round in range(ROUNDS):
 
         with open("registro_para_teste.txt", "a") as f:
             f.write(f"Epoch: {epoch}\n")
+            # Linha comentada para registrar 
             f.write(f"MSE: {MSE_Clients}\n")
             f.write(f"Pearson: {pearsonS}")
-            f.write(f"\n")
+            # for i in range(len(y_test1)):
+            #     f.write(f"Real Value: {y_test_list[i]} | Predction Value: {prediction_list[i]}\n")
+            # f.write(f"\n")
 
         # Fase 4: Agregar treinamento
         server.aggregate_fit([client1.trees, client2.trees, client3.trees, client4.trees], strategy, executor, threshold)
@@ -102,3 +138,11 @@ with open("registro_para_teste.txt", "a") as f:
     f.write(f"\n")
 
 executor.shutdown()
+
+end_time = time.time()
+execution_time = end_time - start_time
+print(f"Tempo de Execução: {execution_time/60:.2f} minutos")
+
+with open("/home/juliocoliveira/Área de Trabalho/time_comparation_paralelizado.txt", "a") as f:
+    f.write(f"\n")
+    f.write(f"Tempo de Execução: {execution_time/60:.2f} minutos")

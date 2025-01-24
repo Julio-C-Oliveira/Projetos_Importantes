@@ -142,9 +142,41 @@ def partition(data: np.ndarray, label: np.ndarray, num_partitions: int):
     ### Returns:
     - [Data, Label]: Uma partição do dataset original.
     """
+    # data = np.array(data)
+    # label = np.array(label)
+    # idxs = np.arange(len(data))
+    # np.random.shuffle(idxs)
     return list(
         zip(np.array_split(data, num_partitions), np.array_split(label, num_partitions))
     )
+if __name__ == "__main__":
+    (X_train, y_train), (X_test, y_test) = load_dataset()
+    print("DATASET 01")
+    print(partition(X_train, y_train, 4)[0])
+    print("DATASET 02")
+    print(partition(X_train, y_train, 4)[1])
+    print("DATASET 03")
+    print(partition(X_train, y_train, 4)[2])
+    print("DATASET 04")
+    print(partition(X_train, y_train, 4)[3])
+
+
+# def partition(data: np.ndarray, label: np.ndarray, num_partitions: int):
+#     """
+#     ### Função:
+#     Dividir o dataset de acordo com o número de clientes.
+#     ### Args:
+#     - Data: As features.
+#     - Label: Os targets.
+#     - Numéro de Clientes.
+#     ### Returns:
+#     - [Data, Label]: Uma partição do dataset original.
+#     """
+#     lenght = len(data)
+#     lenght_partition = int(len(data)/num_partitions)
+#     data = data.sample(n=lenght_partition)
+#     label = data.loc[data.index]
+#     return [data, label]
 
 def serialise_tree(tree_model) -> bytes:
     """

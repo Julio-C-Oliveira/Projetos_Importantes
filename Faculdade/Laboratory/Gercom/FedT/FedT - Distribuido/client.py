@@ -9,8 +9,8 @@ from sklearn.ensemble import RandomForestRegressor
 from client_utils import HouseClient
 import utils
 
-#IP = "10.126.1.109"
-IP = "192.168.1.214"
+IP = "10.126.1.109"
+#IP = "192.168.1.214"
 PORTA = "50051"
 
 import argparse

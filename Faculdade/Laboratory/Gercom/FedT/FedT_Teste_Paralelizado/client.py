@@ -36,27 +36,33 @@ class HouseClient():
 
     def evaluate(self, global_model: RandomForestRegressor):
         global_model_trees = self.get_global_parameters(global_model)
+
+        local_predictions = self.local_model.predict(self.X_test)
+        global_predictions = global_model.predict(self.X_test)
         
-        local_absolute_error = mean_absolute_error(self.y_test, self.local_model.predict(self.X_test))
-        global_model_absolute_error = mean_absolute_error(self.y_test, global_model.predict(self.X_test))
+        local_absolute_error = mean_absolute_error(self.y_test, local_predictions)
+        global_model_absolute_error = mean_absolute_error(self.y_test, global_predictions)
 
-        local_squared_error = mean_squared_error(self.y_test, self.local_model.predict(self.X_test))
-        global_model_squared_error = mean_squared_error(self.y_test, global_model.predict(self.X_test))
+        local_squared_error = mean_squared_error(self.y_test, local_predictions)
+        global_model_squared_error = mean_squared_error(self.y_test, global_predictions)
 
-        local_pearson_corr, local_p_value = pearsonr(self.y_test, self.local_model.predict(self.X_test))
-        global_model_pearson_corr, global_model_p_value = pearsonr(self.y_test, global_model.predict(self.X_test))
+        local_pearson_corr, local_p_value = pearsonr(self.y_test, local_predictions)
+        global_model_pearson_corr, global_model_p_value = pearsonr(self.y_test, global_predictions)
 
         if local_absolute_error < global_model_absolute_error:
              absolute_error = local_absolute_error
              squared_error = local_squared_error
              pearson_corr, p_value = local_pearson_corr, local_p_value
+             predctions = local_predictions
         else:
              absolute_error = global_model_absolute_error
              squared_error = global_model_squared_error
              pearson_corr, p_value = global_model_pearson_corr, global_model_p_value
              self.trees = global_model_trees
              utils.set_model_params(self.local_model, self.trees)
+             predctions = global_predictions
 
+        # return absolute_error, squared_error, (pearson_corr, p_value), self.trees, self.y_test, predctions
         return absolute_error, squared_error, (pearson_corr, p_value), self.trees
 
     
