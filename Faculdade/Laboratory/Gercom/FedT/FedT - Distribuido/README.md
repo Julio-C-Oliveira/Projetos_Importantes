@@ -1,1 +1,1 @@
-Coloca como texto de descrição: Este software tem a finalidade de integrar o conceito de aprendizado federado com o modelo de aprendizado de máquina árvores de decisão e foi desenvolvido por Julio C. Oliveira no âmbito de projeto de pesquisa sob orientação do Professor André Riker (FACOMP/PPGCC UFPA)
+Este software tem a finalidade de integrar o conceito de aprendizado federado com o modelo de aprendizado de máquina árvores de decisão e foi desenvolvido por Julio C. Oliveira no âmbito de projeto de pesquisa sob orientação do Professor André Riker (FACOMP/PPGCC UFPA)
