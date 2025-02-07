@@ -1,12 +1,14 @@
-package pokemonSection;
+package pokemonSection.pokemonMoves;
 
-public class Moves {
-    private char[] moveName = new char[22]; // Nome do movimento.
+import pokemonSection.Type;
+
+public class MoveBase {
+    private char[] moveName; // Nome do movimento.
     private short baseDamage; // Dano base do movimento.
     private byte remainingUses; // Número de vezes que a habilidade poderá ser utilizada.
     private Type moveType; // Tipo do movimento.
 
-    public Moves(char[] moveName, short baseDamage, byte remainingUses, Type moveType) {
+    private MoveBase(char[] moveName, short baseDamage, byte remainingUses, Type moveType) {
         this.moveName = moveName;
         this.baseDamage = baseDamage;
         this.remainingUses = remainingUses;
@@ -39,5 +41,10 @@ public class Moves {
     }
     public void setMoveType(Type moveType) {
         this.moveType = moveType;
+    }
+
+
+    public static MoveBase createMove(char[] moveName, short baseDamage, byte remainingUses, Type moveType) {
+        return new MoveBase(moveName, baseDamage, remainingUses, moveType);
     }
 }
