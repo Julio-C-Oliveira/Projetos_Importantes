@@ -1,24 +1,28 @@
 package pokemonSection.pokemonMoves;
 
+import pokemonSection.StatusCondition;
 import pokemonSection.Type;
 
 public class MoveBase {
-    private char[] moveName; // Nome do movimento.
+    private String moveName; // Nome do movimento.
     private short baseDamage; // Dano base do movimento.
     private byte remainingUses; // Número de vezes que a habilidade poderá ser utilizada.
     private Type moveType; // Tipo do movimento.
+    private StatusCondition attackEffect; // Efeito do Ataque.
+    // Adicionar o tempo do efeito.
 
-    private MoveBase(char[] moveName, short baseDamage, byte remainingUses, Type moveType) {
+    private MoveBase(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition attackEffect) {
         this.moveName = moveName;
         this.baseDamage = baseDamage;
         this.remainingUses = remainingUses;
         this.moveType = moveType;
+        this.attackEffect = attackEffect;
     }
 
-    public char[] getMoveName() {
+    public String getMoveName() {
         return moveName;
     }
-    public void setMoveName(char[] moveName) {
+    public void setMoveName(String moveName) {
         this.moveName = moveName;
     }
 
@@ -43,8 +47,14 @@ public class MoveBase {
         this.moveType = moveType;
     }
 
+    public StatusCondition getAttackEffect() {
+        return attackEffect;
+    }
+    public void setAttackEffect(StatusCondition attackEffect) {
+        this.attackEffect = attackEffect;
+    }
 
-    public static MoveBase createMove(char[] moveName, short baseDamage, byte remainingUses, Type moveType) {
-        return new MoveBase(moveName, baseDamage, remainingUses, moveType);
+    public static MoveBase createMove(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition attackEffect) {
+        return new MoveBase(moveName, baseDamage, remainingUses, moveType, attackEffect);
     }
 }
