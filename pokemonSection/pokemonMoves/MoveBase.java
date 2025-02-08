@@ -8,15 +8,17 @@ public class MoveBase {
     private short baseDamage; // Dano base do movimento.
     private byte remainingUses; // Número de vezes que a habilidade poderá ser utilizada.
     private Type moveType; // Tipo do movimento.
-    private StatusCondition attackEffect; // Efeito do Ataque.
+    private StatusCondition moveEffectOnEnemy;// Efeito do Ataque no Inimigo.
+    private StatusCondition moveEffectOnMe; // Efeito do Ataque no próprio pokémon.
     // Adicionar o tempo do efeito.
 
-    private MoveBase(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition attackEffect) {
+    private MoveBase(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition moveEffectOnEnemy, StatusCondition moveEffectOnMe) {
         this.moveName = moveName;
         this.baseDamage = baseDamage;
         this.remainingUses = remainingUses;
         this.moveType = moveType;
-        this.attackEffect = attackEffect;
+        this.moveEffectOnEnemy = moveEffectOnEnemy;
+        this.moveEffectOnMe = moveEffectOnMe;
     }
 
     public String getMoveName() {
@@ -47,14 +49,21 @@ public class MoveBase {
         this.moveType = moveType;
     }
 
-    public StatusCondition getAttackEffect() {
-        return attackEffect;
+    public StatusCondition getMoveEffectOnEnemy() {
+        return moveEffectOnEnemy;
     }
-    public void setAttackEffect(StatusCondition attackEffect) {
-        this.attackEffect = attackEffect;
+    public void setMoveEffectOnEnemy(StatusCondition moveEffectOnEnemy) {
+        this.moveEffectOnEnemy = moveEffectOnEnemy;
     }
 
-    public static MoveBase createMove(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition attackEffect) {
-        return new MoveBase(moveName, baseDamage, remainingUses, moveType, attackEffect);
+    public StatusCondition getMoveEffectOnMe() {
+        return moveEffectOnMe;
+    }
+    public void setMoveEffectOnMe(StatusCondition moveEffectOnMe) {
+        this.moveEffectOnMe = moveEffectOnMe;
+    }
+
+    public static MoveBase createMove(String moveName, short baseDamage, byte remainingUses, Type moveType, StatusCondition moveEffectOnEnemy, StatusCondition moveEffectOnMe) {
+        return new MoveBase(moveName, baseDamage, remainingUses, moveType, moveEffectOnEnemy, moveEffectOnMe);
     }
 }
