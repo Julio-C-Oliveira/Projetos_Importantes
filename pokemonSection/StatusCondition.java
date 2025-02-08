@@ -10,6 +10,7 @@ public enum StatusCondition {
     ELECTRIFIED,
     FIGHTSPIRIT,
     SOLIDIFIED,
+    FLYINGHIGH,
 
     // Harms
     PARALYSIS,
@@ -17,5 +18,6 @@ public enum StatusCondition {
     DROWNING,
     POISON,
     SLEEP,
-    CONFUSION
+    CONFUSION,
+    WEAKENED
 }
