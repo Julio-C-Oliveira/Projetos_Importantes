@@ -165,8 +165,6 @@ class FedT(fedT_pb2_grpc.FedTServicer):
             else:
                 break
 
-        # O Erro está ocorrendo aqui, por algum motivo está retornando None
-
         serialised_global_trees = utils.serialise_several_trees(self.model.estimators_)
         number_of_trees = len(serialised_global_trees)
         number_of_sended_trees = 0
