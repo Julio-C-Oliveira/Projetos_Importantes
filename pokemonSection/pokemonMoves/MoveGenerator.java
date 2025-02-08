@@ -47,20 +47,20 @@ public class MoveGenerator {
         movements[19] = createMove("Iron Punch", (short) 0, (byte) 15, Type.FIGHTING, StatusCondition.NORMAL, StatusCondition.FIGHTSPIRIT);
         movements[20] = createMove("Erguer Guarda", (short) 0, (byte) 15, Type.FIGHTING, StatusCondition.NORMAL, StatusCondition.SOLIDIFIED);
 
-        // Tipo POISON. "Poison Point", "Sopro Ácido", "Ingestão", // Tipo POISON.
-        movements[21] = createMove();
-        movements[22] = createMove();
-        movements[23] = createMove();
+        // Tipo POISON.
+        movements[21] = createMove("Poison Point", (short) 5, (byte) 5, Type.POISON, StatusCondition.POISON, StatusCondition.HEALING);
+        movements[22] = createMove("Sopro Ácido", (short) 150, (byte) 15, Type.POISON, StatusCondition.POISON, StatusCondition.NORMAL);
+        movements[23] = createMove("Disperse", (short) 0, (byte) 7, Type.POISON, StatusCondition.POISON, StatusCondition.IMMUNITY);
 
-        // Tipo GROUND. "Sand Veil", "Tempestade de Areia", "Dissolver", // Tipo GROUND.
-        movements[24] = createMove();
-        movements[25] = createMove();
-        movements[26] = createMove();
+        // Tipo GROUND.
+        movements[24] = createMove("Sand Veil", (short) 100, (byte) 20, Type.GROUND, StatusCondition.CONFUSION, StatusCondition.NORMAL);
+        movements[25] = createMove("Tempestade de Areia", (short) 250, (byte) 10, Type.GROUND, StatusCondition.NORMAL, StatusCondition.NORMAL);
+        movements[26] = createMove("Dissolver", (short) 0, (byte) 7, Type.GROUND, StatusCondition.NORMAL, StatusCondition.IMMUNITY);
 
-        // Tipo FLYING. "Defense Up", "Evasão", "Sobrevoar", // Tipo FLYING.
-        movements[27] = createMove();
-        movements[28] = createMove();
-        movements[29] = createMove();
+        // Tipo FLYING.
+        movements[27] = createMove("Defense Up", (short) 0, (byte) 20, Type.FLYING, StatusCondition.NORMAL, StatusCondition.SOLIDIFIED);
+        movements[28] = createMove("Rasante", (short) 270, (byte) 7, Type.FLYING, StatusCondition.NORMAL, StatusCondition.NORMAL);
+        movements[29] = createMove("Sobrevoar", (short) 7, (byte) );
 
         // Tipo PSYCHIC. "Synchronize", "Sleep Time", "Ataque Psiquico", // Tipo PSYCHIC.
         movements[30] = createMove();

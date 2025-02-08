@@ -2,7 +2,6 @@ package pokemonSection;
 
 public interface PokemonBase {
     // Atributos base dos pokémons.
-
     String pokemonName = "";
     short healthPoints = 0; // Limitado à 700.
     short pokedexNumber = 0; // Limitado à 386.
@@ -16,6 +15,6 @@ public interface PokemonBase {
 
     // Funções relacionadas aos pokémons que todos deverão ter
     PokemonBase takeAPokemon(); //
-    boolean carryOutAttack(PokemonBase target); //
-    boolean uniqueClassSkill(PokemonBase target); //
+    boolean carryOutAttack(PokemonBase target); // Seleciona um dos movimentos disponiveis e o utiliza.
+    // boolean uniqueClassSkill(PokemonBase target); // Pode dar problema.
 }
