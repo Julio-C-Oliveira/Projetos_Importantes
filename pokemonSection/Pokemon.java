@@ -10,6 +10,7 @@ public class Pokemon {
     private short attackPoints; // Limitado à 400.
     private short defensivePoints; // Limitado à 500.
     private short speedPoints; // Limitado à 350.
+    private short dexterityPoints; // Limitado à 350.
     private short specialPoints; // Limitado à 500.
     private PokemonStatus pokemonStatus; // Condição do pokémon, sleep, poisoned e etc...
     private Type primaryType; // Tipo do Pokémon.
@@ -17,13 +18,14 @@ public class Pokemon {
     private MoveBase[] movements = new MoveBase[3];
 
     // Construtor privado para controlar a criação das instâncias.
-    private Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
+    private Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
         this.pokemonName = pokemonName;
         this.healthPoints = healthPoints;
         this.pokedexNumber = pokedexNumber;
         this.attackPoints = attackPoints;
         this.defensivePoints = defensivePoints;
         this.speedPoints = speedPoints;
+        this.dexterityPoints = dexterityPoints;
         this.specialPoints = specialPoints;
         this.pokemonStatus = pokemonStatus;
         this.primaryType = primaryType;
@@ -72,6 +74,13 @@ public class Pokemon {
     }
     public void setSpeedPoints(short speedPoints) {
         this.speedPoints = speedPoints;
+    }
+
+    public short getDexterityPoints() {
+        return dexterityPoints;
+    }
+    public void setDexterityPoints(short dexterityPoints) {
+        this.dexterityPoints = dexterityPoints;
     }
 
     public short getSpecialPoints() {
@@ -136,6 +145,10 @@ public class Pokemon {
                 specificAttributes.maxSpeedPoints,
                 specificAttributes.minSpeedPoints
         );
+        short dexterityPoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxDexterityPoints,
+                specificAttributes.minDexterityPoints
+        );
         short specialPoints = PokemonUtils.defineRandomAttributeOnInterval(
                 specificAttributes.maxSpecialPoints,
                 specificAttributes.minSpecialPoints
@@ -150,23 +163,31 @@ public class Pokemon {
         };
 
 
-        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
+        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
     }
-    public Pokemon carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+    public void carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+        // Verificar se o outro pókemon tem imunidade ou não
 
-        return null;
+        // Ataque ponto 1. Se o ataque vai acertar ou não.
+
+        // Ataque ponto 2. Se o ataque vai ser critico ou não.
+
+        // Ataque ponto 3. Calculo do dano do ataque e atualizar a vida do inimigo. Se o ataque for crítico o valor do special entra na conta
+
+        // Ataque ponto 4. Efeitos que o ataque causa no inimigo.
     }
 
     // Funções Sobrepostas:
     public String toString() {
         MoveBase[] movements = getMovements();
-        return String.format("%s #%03d\nHP: %d\nATK: %d | DEF: %d\nSPEED: %d\nSPECIAL: %d\nSTATUS: %s\nTYPE: %s/%s\nFIRST MOVE: %s\nSECOND MOVE: %s\nTHIRD MOVE: %s",
+        return String.format("%s #%03d\nHP: %d\nATK: %d | DEF: %d\nSPEED: %d\nDEXTERITY: %d\nSPECIAL: %d\nSTATUS: %s\nTYPE: %s/%s\nFIRST MOVE: %s\nSECOND MOVE: %s\nTHIRD MOVE: %s",
                 getPokemonName(),
                 getPokedexNumber(),
                 getHealthPoints(),
                 getAttackPoints(),
                 getDefensivePoints(),
                 getSpeedPoints(),
+                getDexterityPoints(),
                 getSpecialPoints(),
                 getPokemonStatus(),
                 getPrimaryType(),
