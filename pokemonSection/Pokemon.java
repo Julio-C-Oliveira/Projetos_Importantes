@@ -1,5 +1,7 @@
 package pokemonSection;
 
+import pokemonSection.pokemonMoves.MoveBase;
+
 public class Pokemon {
     // Atributos base dos pokémons.
     private String pokemonName;
@@ -12,9 +14,10 @@ public class Pokemon {
     private PokemonStatus pokemonStatus; // Condição do pokémon, sleep, poisoned e etc...
     private Type primaryType; // Tipo do Pokémon.
     private Type secondaryType; // Tipo do Pokémon.
+    private MoveBase[] movements = new MoveBase[3];
 
     // Construtor privado para controlar a criação das instâncias.
-    private Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType) {
+    private Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
         this.pokemonName = pokemonName;
         this.healthPoints = healthPoints;
         this.pokedexNumber = pokedexNumber;
@@ -25,6 +28,7 @@ public class Pokemon {
         this.pokemonStatus = pokemonStatus;
         this.primaryType = primaryType;
         this.secondaryType = secondaryType;
+        this.movements = movements;
     }
 
     // Getters e Setters da Classe.
@@ -101,9 +105,15 @@ public class Pokemon {
 
     // Funções da Classe:
     public static Pokemon takeAPokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
-        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, specialPoints, pokemonStatus, primaryType, secondaryType);
+        // Lógica da Escolha dos Movimentos que o Pókemon vai ter.
+        MoveBase[] movements = new MoveBase[3];
+
+
+
+        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
     }
     public Pokemon carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+
         return null;
     }
 

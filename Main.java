@@ -32,7 +32,13 @@ public class Main {
         System.out.println(pokemon1);
         System.out.println();
         System.out.println(pokemon2);
+        System.out.println();
 
+        pokemon1.carryOutAttack(pokemon2);
 
+        System.out.println(pokemon1);
+        System.out.println();
+        System.out.println(pokemon2);
+        System.out.println();
     }
 }
