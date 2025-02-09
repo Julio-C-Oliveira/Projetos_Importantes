@@ -1,6 +1,6 @@
 package pokemonSection;
 
-import pokemonSection.pokemonMoves.MoveBase;
+import java.util.Map;
 
 public class Pokemon {
     // Atributos base dos pokémons.
@@ -81,10 +81,10 @@ public class Pokemon {
         this.specialPoints = specialPoints;
     }
 
-    public PokemonStatus getStatus() {
+    public PokemonStatus getPokemonStatus() {
         return pokemonStatus;
     }
-    public void setStatus(PokemonStatus pokemonStatus) {
+    public void setPokemonStatus(PokemonStatus pokemonStatus) {
         this.pokemonStatus = pokemonStatus;
     }
 
@@ -102,12 +102,52 @@ public class Pokemon {
         this.secondaryType = secondaryType;
     }
 
+    public MoveBase[] getMovements() {
+        return movements;
+    }
+    public void setMovements(MoveBase[] movements) {
+        this.movements = movements;
+    }
 
     // Funções da Classe:
-    public static Pokemon takeAPokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
-        // Lógica da Escolha dos Movimentos que o Pókemon vai ter.
-        MoveBase[] movements = new MoveBase[3];
+    public static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
+        // Pegando as Estátisticas e Movimentos disponiveis:
+        Map<Type, AttributesWarehouse> attributesDict = AttributesDefine.takePokemonAttributes();
+        Map<Type, MoveBase[]> movementsDict = MoveGenerator.generateAllMoves();
 
+        AttributesWarehouse specificAttributes = attributesDict.get(primaryType);
+        MoveBase[] primaryMoves = movementsDict.get(primaryType);
+        MoveBase[] secondaryMoves = movementsDict.get(secondaryType);
+
+        // Geração aléatória das estátisticas.
+        short healthPoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxHealthPoints,
+                specificAttributes.minHealthPoints
+        );
+        short attackPoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxAttackPoints,
+                specificAttributes.minAttackPoints
+        );
+        short defensivePoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxDefensivePoints,
+                specificAttributes.minDefensivePoints
+        );
+        short speedPoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxSpeedPoints,
+                specificAttributes.minSpeedPoints
+        );
+        short specialPoints = PokemonUtils.defineRandomAttributeOnInterval(
+                specificAttributes.maxSpecialPoints,
+                specificAttributes.minSpecialPoints
+        );
+        PokemonStatus pokemonStatus = new PokemonStatus();
+
+        // Lógica da Escolha dos Movimentos que o Pókemon vai ter.
+        MoveBase[] movements = new MoveBase[]{
+                PokemonUtils.selectRandomMove(primaryMoves),
+                PokemonUtils.selectRandomMove(secondaryMoves),
+                PokemonUtils.selectRandomMove(primaryMoves, secondaryMoves) // deixar esse último aléatorio, podendo ser qualquer um dos dois tipos.
+        };
 
 
         return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
@@ -119,7 +159,8 @@ public class Pokemon {
 
     // Funções Sobrepostas:
     public String toString() {
-        return String.format("%s #%03d\nHP: %d\nATK: %d | DEF: %d\nSPEED: %d\nSPECIAL: %d\nSTATUS: %s\nTYPE: %s/%s",
+        MoveBase[] movements = getMovements();
+        return String.format("%s #%03d\nHP: %d\nATK: %d | DEF: %d\nSPEED: %d\nSPECIAL: %d\nSTATUS: %s\nTYPE: %s/%s\nFIRST MOVE: %s\nSECOND MOVE: %s\nTHIRD MOVE: %s",
                 getPokemonName(),
                 getPokedexNumber(),
                 getHealthPoints(),
@@ -127,8 +168,11 @@ public class Pokemon {
                 getDefensivePoints(),
                 getSpeedPoints(),
                 getSpecialPoints(),
-                getStatus(),
+                getPokemonStatus(),
                 getPrimaryType(),
-                getSecondaryType());
+                getSecondaryType(),
+                movements[0],
+                movements[1],
+                movements[2]);
     }
 }

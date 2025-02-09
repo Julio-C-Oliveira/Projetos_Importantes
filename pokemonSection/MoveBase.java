@@ -1,7 +1,6 @@
-package pokemonSection.pokemonMoves;
+package pokemonSection;
 
-import pokemonSection.StatusCondition;
-import pokemonSection.Type;
+import java.util.Locale;
 
 public class MoveBase {
     private String moveName; // Nome do movimento.
@@ -79,5 +78,9 @@ public class MoveBase {
                                       StatusCondition moveEffectOnMe, byte timeOfMoveEffectOnMe) {
 
         return new MoveBase(moveName, baseDamage, remainingUses, moveType, moveEffectOnEnemy, timeOfMoveEffectOnEnemy, moveEffectOnMe, timeOfMoveEffectOnMe);
+    }
+
+    public String toString() {
+        return String.format("%s", getMoveName().toUpperCase());
     }
 }
