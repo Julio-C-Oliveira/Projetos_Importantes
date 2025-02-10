@@ -43,7 +43,7 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- Atacar o mesmo inimigo.
 8. Realizar tratamento de exceções sempre que achar necessário.
 
-## Nossa Implemenação	
+## Progresso da Implemenação	
 1. Cada héroi e monstro deverá ter, pelo menos os seguintes atributos:
 	- [x] Nome.
 	- [x] Pontos de Vida.
