@@ -1,6 +1,7 @@
 package pokemonSection;
 
 import java.util.Map;
+import java.util.Random;
 
 public class Pokemon {
     // Atributos base dos pokémons.
@@ -165,16 +166,24 @@ public class Pokemon {
 
         return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
     }
-    public void carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
-        // Verificar se o outro pókemon tem imunidade ou não
+    public Effectiveness carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+        //  1. Verificar se o outro pókemon tem imunidade ou não
+        if (target.pokemonStatus.getEffects().contains(StatusCondition.IMMUNITY)) return Effectiveness.ERROU;
 
-        // Ataque ponto 1. Se o ataque vai acertar ou não.
+        // 2. Se o ataque vai acertar ou não. vou usar essa lógica destreza / (destreza + velocidade do inimigo) * 100
+        int deviateChance = (this.getDexterityPoints() / (this.getDexterityPoints() + target.getSpeedPoints()) * 100);
+        Random random = new Random();
+        double enemyLuck = random.nextDouble() * 100;
 
-        // Ataque ponto 2. Se o ataque vai ser critico ou não.
+        if (deviateChance > enemyLuck) return Effectiveness.ERROU;
 
-        // Ataque ponto 3. Calculo do dano do ataque e atualizar a vida do inimigo. Se o ataque for crítico o valor do special entra na conta
+        // 3. Se o ataque vai ser critico ou não.
 
-        // Ataque ponto 4. Efeitos que o ataque causa no inimigo.
+        // 4. Calculo do dano do ataque e atualizar a vida do inimigo. Se o ataque for crítico o valor do special entra na conta
+
+        // 5. Efeitos que o ataque causa no inimigo.
+
+        return Effectiveness.ACERTOU;
     }
 
     // Funções Sobrepostas:

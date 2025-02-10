@@ -13,17 +13,16 @@ public class TestesParaPokemon {
                 Type.WATER,
                 Type.FIRE);
 
+        System.out.println(pokemon1 + "\n");
+        System.out.println(pokemon2 + "\n");
 
-        System.out.println(pokemon1);
-        System.out.println();
-        System.out.println(pokemon2);
-        System.out.println();
+        System.out.println("SEM IMUNIDADE:");
+        System.out.println(pokemon1.carryOutAttack(pokemon2) + "\n");
+        // System.out.println(pokemon1 + "\n");
+        // System.out.println(pokemon2 + "\n");
 
-        pokemon1.carryOutAttack(pokemon2);
-
-        System.out.println(pokemon1);
-        System.out.println();
-        System.out.println(pokemon2);
-        System.out.println();
+        System.out.println("COM IMUNIDADE:");
+        pokemon2.getPokemonStatus().getEffects().add(StatusCondition.IMMUNITY);
+        System.out.println(pokemon1.carryOutAttack(pokemon2) + "\n");
     }
 }
