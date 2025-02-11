@@ -1,5 +1,6 @@
 package pokemonSection;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
@@ -166,27 +167,49 @@ public class Pokemon {
 
         return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
     }
-    public Effectiveness carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+    public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
+        DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
         System.out.println("Nome:" + this.getPokemonName());
 
         //  1. Verificar se o outro pókemon tem imunidade ou não
-        if (target.pokemonStatus.getEffects().contains(StatusCondition.IMMUNITY)) return Effectiveness.ERROU;
+        if (target.pokemonStatus.getEffects().contains(StatusCondition.IMMUNITY)) {
+            int index = target.pokemonStatus.getEffects().indexOf(StatusCondition.IMMUNITY);
+            ArrayList<StatusCondition> effects = target.pokemonStatus.getEffects();
+            ArrayList<Byte> times = target.pokemonStatus.getTime();
+
+            // Descontar os usos de imunidade
+            if ((times.get(index) - 1) <= 0) {
+                effects.remove(index);
+                times.remove(index);
+            } else {
+                times.set(index, (byte) (times.get(index) - 1));
+            }
+
+            resultOfAttack.hitLevel = Effectiveness.ERROU;
+            return resultOfAttack;
+        }
 
         // 2. Se o ataque vai acertar ou não. vou usar essa lógica: destreza do inimigo / (destreza do inimigo + velocidade) * 100
         double enemyDeviateChance = ((double) target.getDexterityPoints() / (target.getDexterityPoints() + this.getSpeedPoints()) * 100);
         Random random = new Random();
         double myLuckToHit = random.nextDouble() * 100;
 
-        if (enemyDeviateChance > myLuckToHit) return Effectiveness.ERROU;
+        if (enemyDeviateChance > myLuckToHit) {
+            resultOfAttack.hitLevel = Effectiveness.ERROU;
+            return resultOfAttack;
+        }
 
         // 3. Se o ataque vai ser critico ou não. vou usar essa lógica: (defesa do inimigo + destreza do inimigo) / (ataque + velocidade * 2) * 100
         double notCriticizeChance = ((double) (this.getDefensivePoints() + this.getDexterityPoints()) / (target.getAttackPoints() + target.getSpeedPoints() * 2) * 100);
         double myLuckToCriticize = random.nextDouble() * 100;
 
-        Effectiveness resultOfAttack;
         int damageInflicted;
-        // Cometi um erro, esqueci de levar a habilidade escolhida em consideração no cálculo.
-        MoveBase selectedMovement = PokemonUtils.selectRandomMove(this.getMovements());
+
+        MoveBase selectedMovement;
+        do {
+            selectedMovement = PokemonUtils.selectRandomMove(this.getMovements());
+        } while (selectedMovement.getRemainingUses() <= 0);
+        selectedMovement.setRemainingUses((byte) (selectedMovement.getRemainingUses()-1));
 
         if (notCriticizeChance > myLuckToCriticize) {
             // Cálculo do dano causado: (meu ataque + meu poder / 2) / defesa do inimigo
@@ -194,21 +217,22 @@ public class Pokemon {
             // damageInflicted = (this.getAttackPoints() * this.getSpecialPoints() / 2) / target.getDefensivePoints();
 
             damageInflicted = (int) (((float) this.getAttackPoints() / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
-            resultOfAttack = Effectiveness.ACERTOU;
+            resultOfAttack.hitLevel = Effectiveness.ACERTOU;
         } else {
             // Cálculo do dano crítico causado: (meu ataque + meu poder) / defesa do inimigo
             // Tinha esquecido do dano da habilidade, vou mudar para: ((Meu ataque + Meu Especial / defesa do inimigo) * Poder do Ataque)
             //damageInflicted = (this.getAttackPoints() * this.getSpecialPoints()) / target.getDefensivePoints();
 
             damageInflicted = (int) ((((float) this.getAttackPoints() + this.getSpecialPoints()) / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
-            resultOfAttack = Effectiveness.CRITICAL_HIT;
+            resultOfAttack.hitLevel = Effectiveness.CRITICAL_HIT;
         }
 
         // 4. Atualizar a vida do inimigo.
-        System.out.printf("Habilidade Utilizada: %s\nDano Infligido: %d\nVida do Inimigo: %d\nVida após o Ataque: %d\n", selectedMovement, damageInflicted, target.getHealthPoints(), target.getHealthPoints() - damageInflicted);
+        System.out.printf("Habilidade Utilizada: %s | Usos restantes: %s\nDano Infligido: %d\nVida do Inimigo: %d\nVida após o Ataque: %d\n", selectedMovement, selectedMovement.getRemainingUses(), damageInflicted, target.getHealthPoints(), target.getHealthPoints() - damageInflicted);
         target.setHealthPoints((short) (target.getHealthPoints() - damageInflicted));
 
-        // 5. Efeitos que o ataque causa no inimigo.
+        // 5. Efeitos colaterais.
+
 
 
         return resultOfAttack;

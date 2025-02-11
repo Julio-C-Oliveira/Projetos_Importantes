@@ -72,7 +72,7 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [ ] Controlar as ações dos players.
 	- [ ] Ordenar os players com base em algum atributo.
 	- [ ] Armazenar o resultado do ataque que será um ENUM.
-5. O Enum deve modelar o resultado de um Ataque para os valores:
+5. O Enum deve modelar o resultado de um Ataque para os valores: (Feito)
 	- [x] ERROU.
 	- [x] ACERTOU.
 	- [x] CRITICAL_HIT.
