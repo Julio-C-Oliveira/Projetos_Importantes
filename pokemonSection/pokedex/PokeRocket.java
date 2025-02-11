@@ -5,9 +5,10 @@ import pokemonSection.constants.Type;
 
 public class PokeRocket extends Pokemon{
     private static byte numberOfRockets;
+    private static byte rocketLevel;
 
     protected PokeRocket(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
-        super(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
+        super(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, PokeRocket.getRocketLevel());
     }
 
     public static byte getNumberOfRockets() {
@@ -17,8 +18,15 @@ public class PokeRocket extends Pokemon{
         PokeRocket.numberOfRockets = numberOfRockets;
     }
 
+    public static byte getRocketLevel() {
+        return rocketLevel;
+    }
+    public static void setRocketLevel(byte rocketLevel) {
+        PokeRocket.rocketLevel = rocketLevel;
+    }
+
     public static Pokemon takeAPokeRocket(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType) {
         PokeRocket.setNumberOfRockets((byte) (PokeRocket.getNumberOfRockets() + 1));
-        return Pokemon.takeAPokemon(pokemonName, pokedexNumber, primaryType, secondaryType);
+        return Pokemon.takeAPokemon(pokemonName, pokedexNumber, primaryType, secondaryType, PokeRocket.getRocketLevel());
     }
 }

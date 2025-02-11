@@ -29,7 +29,7 @@ public class Pokemon {
     private byte level;
 
     // Construtor privado para controlar a criação das instâncias.
-    protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
+    protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements, byte level) {
         this.pokemonName = pokemonName;
         this.healthPoints = healthPoints;
         this.pokedexNumber = pokedexNumber;
@@ -42,6 +42,7 @@ public class Pokemon {
         this.primaryType = primaryType;
         this.secondaryType = secondaryType;
         this.movements = movements;
+        this.level = level;
     }
 
     // Getters e Setters da Classe.
@@ -129,8 +130,15 @@ public class Pokemon {
         this.movements = movements;
     }
 
+    public byte getLevel() {
+        return level;
+    }
+    public void setLevel(byte level) {
+        this.level = level;
+    }
+
     // Funções da Classe:
-    protected static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
+    protected static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType, byte level) { // Cria uma instância de Pokémon.
         // Pegando as Estatísticas e Movimentos disponíveis:
         Map<Type, AttributesWarehouse> attributesDict = AttributesDefine.takePokemonAttributes();
         Map<Type, MoveBase[]> movementsDict = MoveGenerator.generateAllMoves();
@@ -173,7 +181,7 @@ public class Pokemon {
                 PokemonUtils.selectRandomMove(primaryMoves, secondaryMoves) // deixar esse último aléatorio, podendo ser qualquer um dos dois tipos.
         };
 
-        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
+        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level);
     }
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
         DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
@@ -224,28 +232,30 @@ public class Pokemon {
             // Tinha esquecido do dano da habilidade, vou mudar para: ((Meu ataque / defesa do inimigo) * Poder do Ataque)
             // damageInflicted = (this.getAttackPoints() * this.getSpecialPoints() / 2) / target.getDefensivePoints();
 
-            damageInflicted = (int) (((float) this.getAttackPoints() / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
+            damageInflicted = (int) ( ((float) this.getLevel() / target.getLevel()) * ((float) this.getAttackPoints() / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
             resultOfAttack.hitLevel = Effectiveness.ACERTOU;
         } else {
             // Cálculo do dano crítico causado: (meu ataque + meu poder) / defesa do inimigo
             // Tinha esquecido do dano da habilidade, vou mudar para: ((Meu ataque + Meu Especial / defesa do inimigo) * Poder do Ataque)
             //damageInflicted = (this.getAttackPoints() * this.getSpecialPoints()) / target.getDefensivePoints();
 
-            damageInflicted = (int) ((((float) this.getAttackPoints() + this.getSpecialPoints()) / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
+            damageInflicted = (int) ( ((float) this.getLevel() / target.getLevel()) * (((float) this.getAttackPoints() + this.getSpecialPoints()) / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
             resultOfAttack.hitLevel = Effectiveness.CRITICAL_HIT;
         }
 
-        // 4. Atualizar a vida do inimigo.
-        target.setHealthPoints((short) (target.getHealthPoints() - damageInflicted));
 
-        // 5. Efeitos colaterais.
 
-        // 6. Retornos pro Log.
+        // 4.1 Retorno pro Log.
         resultOfAttack.skillUsed = selectedMovement.toString();
         resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
         resultOfAttack.inflictedDamage = damageInflicted;
         resultOfAttack.healthPointsBeforeAttack = target.getHealthPoints();
-        resultOfAttack.healthPointsAfterAttack = (short) (target.getHealthPoints() - damageInflicted);
+
+        // 5. Atualizar a vida do inimigo.
+        target.setHealthPoints((short) (target.getHealthPoints() - damageInflicted));
+
+        // 4.2 Retorno pro Log.
+        resultOfAttack.healthPointsAfterAttack = target.getHealthPoints();
         resultOfAttack.effectOnAttackToEnemy = selectedMovement.getMoveEffectOnEnemy();
         resultOfAttack.effectOnAttackToMe = selectedMovement.getMoveEffectOnMe();
 

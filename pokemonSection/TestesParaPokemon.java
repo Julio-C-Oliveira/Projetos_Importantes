@@ -8,6 +8,18 @@ import pokemonSection.pokedex.Pokemon;
 
 public class TestesParaPokemon {
     public static void testar() {
+        /* Settar o Nível dos Vilões e dos Heróis, isso é uma constante.
+        *  Heróis deixei settado em 5.
+        *  Acho que uma boa definição de dificuldade está em:
+        *  - Muito Fácil: Settar nível 8 para os vilões.
+        *  - Fácil: Settar nível 9 para os vilões.
+        *  - Médio: Settar nível 10 para os vilões.
+        *  - Difícil: Settar nível 11 para os vilões.
+        *  - Muito Difícil: Settar nível 12 para os vilões.
+        */
+        PokeSOX.setSoxLevel((byte) 10); // Nível dos heróis, padrão 10, limite 127.
+        PokeRocket.setRocketLevel((byte) 8); // Nível dos heróis, padrão 10, limite 127.
+
         Pokemon pokemon1 = PokeSOX.takeAPokeSOX(
                 "01",
                 (short) 47,
@@ -44,7 +56,7 @@ public class TestesParaPokemon {
         }
 
         // Acessar o número de Instâncias Criadas:
-        System.out.println("SOXs: " + PokeSOX.getNumberOfSOXs());
+        System.out.println("\nSOXs: " + PokeSOX.getNumberOfSOXs());
         System.out.println("Rockets: " + PokeRocket.getNumberOfRockets());
     }
 }
