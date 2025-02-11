@@ -1,8 +1,9 @@
-package pokemonSection;
+package pokemonSection.attributes;
+
+import pokemonSection.constants.Type;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class AttributesDefine {
     public AttributesDefine() {}

@@ -1,4 +1,4 @@
-package pokemonSection;
+package pokemonSection.attributes;
 
 public class AttributesWarehouse {
     public short maxHealthPoints;

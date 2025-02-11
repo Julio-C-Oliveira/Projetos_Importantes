@@ -1,4 +1,4 @@
-package pokemonSection;
+package pokemonSection.constants;
 
 public enum Type {
     NORMAL,

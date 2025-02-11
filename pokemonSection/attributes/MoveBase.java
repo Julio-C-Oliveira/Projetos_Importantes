@@ -1,6 +1,7 @@
-package pokemonSection;
+package pokemonSection.attributes;
 
-import java.util.Locale;
+import pokemonSection.constants.StatusCondition;
+import pokemonSection.constants.Type;
 
 public class MoveBase {
     private String moveName; // Nome do movimento.

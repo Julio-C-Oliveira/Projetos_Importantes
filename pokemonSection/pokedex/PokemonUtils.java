@@ -1,4 +1,6 @@
-package pokemonSection;
+package pokemonSection.pokedex;
+
+import pokemonSection.attributes.MoveBase;
 
 import java.util.Random;
 

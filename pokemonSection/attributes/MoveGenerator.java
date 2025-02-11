@@ -1,9 +1,12 @@
-package pokemonSection;
+package pokemonSection.attributes;
+
+import pokemonSection.constants.StatusCondition;
+import pokemonSection.constants.Type;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static pokemonSection.MoveBase.createMove;
+import static pokemonSection.attributes.MoveBase.createMove;
 
 public class MoveGenerator {
     public MoveGenerator() {}

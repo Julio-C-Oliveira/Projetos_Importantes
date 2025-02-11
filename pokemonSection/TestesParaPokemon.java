@@ -1,13 +1,19 @@
 package pokemonSection;
 
+import pokemonSection.constants.Type;
+import pokemonSection.pokedex.DataPokemonAttackClass;
+import pokemonSection.pokedex.PokeRocket;
+import pokemonSection.pokedex.PokeSOX;
+import pokemonSection.pokedex.Pokemon;
+
 public class TestesParaPokemon {
     public static void testar() {
-        Pokemon pokemon1 = Pokemon.takeAPokemon(
+        Pokemon pokemon1 = PokeSOX.takeAPokeSOX(
                 "01",
                 (short) 47,
                 Type.NORMAL,
                 Type.FIRE);
-        Pokemon pokemon2 = Pokemon.takeAPokemon(
+        Pokemon pokemon2 = PokeRocket.takeAPokeRocket(
                 "02",
                 (short) 127,
                 Type.WATER,
@@ -36,5 +42,9 @@ public class TestesParaPokemon {
                 break;
             }
         }
+
+        // Acessar o número de Instâncias Criadas:
+        System.out.println("SOXs: " + PokeSOX.getNumberOfSOXs());
+        System.out.println("Rockets: " + PokeRocket.getNumberOfRockets());
     }
 }

@@ -1,4 +1,6 @@
-package pokemonSection;
+package pokemonSection.pokedex;
+
+import pokemonSection.constants.StatusCondition;
 
 import java.util.ArrayList;
 

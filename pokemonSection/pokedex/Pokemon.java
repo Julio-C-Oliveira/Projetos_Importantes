@@ -1,4 +1,12 @@
-package pokemonSection;
+package pokemonSection.pokedex;
+
+import pokemonSection.attributes.AttributesDefine;
+import pokemonSection.attributes.AttributesWarehouse;
+import pokemonSection.attributes.MoveBase;
+import pokemonSection.attributes.MoveGenerator;
+import pokemonSection.constants.Effectiveness;
+import pokemonSection.constants.StatusCondition;
+import pokemonSection.constants.Type;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,9 +26,10 @@ public class Pokemon {
     private Type primaryType; // Tipo do Pokémon.
     private Type secondaryType; // Tipo do Pokémon.
     private MoveBase[] movements = new MoveBase[3];
+    private byte level;
 
     // Construtor privado para controlar a criação das instâncias.
-    private Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
+    protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements) {
         this.pokemonName = pokemonName;
         this.healthPoints = healthPoints;
         this.pokedexNumber = pokedexNumber;
@@ -121,7 +130,7 @@ public class Pokemon {
     }
 
     // Funções da Classe:
-    public static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
+    protected static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType) { // Cria uma instância de Pokémon.
         // Pegando as Estatísticas e Movimentos disponíveis:
         Map<Type, AttributesWarehouse> attributesDict = AttributesDefine.takePokemonAttributes();
         Map<Type, MoveBase[]> movementsDict = MoveGenerator.generateAllMoves();
@@ -163,7 +172,6 @@ public class Pokemon {
                 PokemonUtils.selectRandomMove(secondaryMoves),
                 PokemonUtils.selectRandomMove(primaryMoves, secondaryMoves) // deixar esse último aléatorio, podendo ser qualquer um dos dois tipos.
         };
-
 
         return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements);
     }
@@ -232,6 +240,7 @@ public class Pokemon {
 
         // 5. Efeitos colaterais.
 
+        // 6. Retornos pro Log.
         resultOfAttack.skillUsed = selectedMovement.toString();
         resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
         resultOfAttack.inflictedDamage = damageInflicted;
