@@ -2,7 +2,7 @@ package pokemonSection;
 
 public enum StatusCondition {
     // Benefits
-    NORMAL,
+    NENHUM,
     HEALING,
     EXCITED,
     WARMUP,

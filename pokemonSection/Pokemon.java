@@ -231,6 +231,12 @@ public class Pokemon {
         System.out.printf("Habilidade Utilizada: %s | Usos restantes: %s\nDano Infligido: %d\nVida do Inimigo: %d\nVida após o Ataque: %d\n", selectedMovement, selectedMovement.getRemainingUses(), damageInflicted, target.getHealthPoints(), target.getHealthPoints() - damageInflicted);
         target.setHealthPoints((short) (target.getHealthPoints() - damageInflicted));
 
+//        resultOfAttack.skillUsed;
+//        resultOfAttack.remainingUses;
+//        resultOfAttack.inflictedDamage;
+//        resultOfAttack.healthPointsBeforeAttack;
+//        resultOfAttack.healthPointsAfterAttack;
+
         // 5. Efeitos colaterais.
 
 

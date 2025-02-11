@@ -7,4 +7,6 @@ public class DataPokemonAttackClass {
     Integer inflictedDamage = null;
     Short healthPointsBeforeAttack = null;
     Short healthPointsAfterAttack = null;
+    StatusCondition effectOnAttackToEnemy = null;
+    StatusCondition effectOnAttackToMe = null;
 }

@@ -10,7 +10,7 @@ public class AttributesDefine {
     public static Map<Type, AttributesWarehouse> takePokemonAttributes() {
         Map<Type, AttributesWarehouse> attributesDict = new HashMap<>();
 
-        // Tipo NORMAL, os que ficarão no meio termo.
+        // Tipo NENHUM, os que ficarão no meio termo.
         attributesDict.put(Type.NORMAL, new AttributesWarehouse(
                 (short) 450, // Máximo de vida.
                 (short) 250, // Mínimo de vida.
