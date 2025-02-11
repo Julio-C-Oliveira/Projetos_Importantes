@@ -27,7 +27,10 @@ public class TestesParaPokemon {
 
         Pokemon[] pokemons = {pokemon1, pokemon2};
         for (int i = 0; i < 30; i++) {
-            System.out.println(pokemons[i%2].carryOutAttack(pokemons[(i+1)%2]) + "\n");
+            DataPokemonAttackClass resultOfAttack = pokemons[i%2].carryOutAttack(pokemons[(i+1)%2]);
+
+            System.out.printf("Resultado do Ataque: %s\nHabilidade Utilizada: %s | Usos restantes: %s\nDano Infligido: %d\nVida do Inimigo: %d\nVida após o Ataque: %d\n\n", resultOfAttack.hitLevel, resultOfAttack.skillUsed, resultOfAttack.remainingUses, resultOfAttack.inflictedDamage, resultOfAttack.healthPointsBeforeAttack, resultOfAttack.healthPointsAfterAttack);
+
             if (pokemons[(i+1)%2].getHealthPoints() <= 0) {
                 System.out.println("O Vencedor é o Pokémon:\n" + pokemons[i%2]);
                 break;
