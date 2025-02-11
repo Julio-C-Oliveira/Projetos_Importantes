@@ -31,6 +31,7 @@ public class PokemonStatus {
         this.effects.add(effect);
         this.times.add(effectTime);
     }
+
     //public void castStatus(Pokemon pokemon) {
     //    // Adicionar a lógica de todas as condições aqui
     //}

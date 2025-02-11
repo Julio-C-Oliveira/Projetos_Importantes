@@ -44,13 +44,13 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 8. Realizar tratamento de exceções sempre que achar necessário.
 
 ## Progresso da Implemenação	
-1. Cada héroi e monstro deverá ter, pelo menos os seguintes atributos:
+1. Cada héroi e monstro deverá ter, pelo menos os seguintes atributos, (Feito):
 	- [x] Nome.
 	- [x] Pontos de Vida.
 	- [x] Força de Ataque.
 	- [x] Defesa.
- 	- [ ] Destreza. Quando maior, mais chance de acertar um ataque.
- 	- [ ] Velocidade. Quanto maior, mais chance de desviar de um ataque.
+ 	- [x] Destreza. Quando maior, mais chance de acertar um ataque.
+ 	- [x] Velocidade. Quanto maior, mais chance de desviar de um ataque.
  	- [x] Os atributos devem ser definidos aléatoriamente dentro de um intervalo pré definido.
 2. Cada héroi e monstro deverá ter, pelo menos as seguintes implementações:
    	- [x] Um construtor.
