@@ -35,6 +35,9 @@ public class TestesParaPokemon {
         System.out.println(pokemon1 + "\n");
         System.out.println(pokemon2 + "\n");
 
+        System.out.println("## Pokémons com os melhores atributos em Campo ao Inicio do Jogo:");
+        System.out.println(PokemonBestAttributes.pokemonBestAttributes());
+
 //        System.out.println("SEM IMUNIDADE:");
 //        for (int i = 0; i < 20; i++) System.out.println(pokemon1.carryOutAttack(pokemon2) + "\n");
 //        System.out.println(pokemon1 + "\n");
@@ -61,9 +64,10 @@ public class TestesParaPokemon {
 
         // Acessar o número de Instâncias Criadas:
         System.out.println("\nSOXs: " + PokeSOX.getNumberOfSOXs());
-        System.out.println("Rockets: " + PokeRocket.getNumberOfRockets());
+        System.out.println("Rockets: " + PokeRocket.getNumberOfRockets() + "\n");
 
-        // Verificando se a função de ordenação está funcionando
+        // Verificando os melhores atributos:
+        System.out.println("## Pokémons com os melhores atributos em Campo ao Final do Jogo:");
         System.out.println(PokemonBestAttributes.pokemonBestAttributes());
     }
 }

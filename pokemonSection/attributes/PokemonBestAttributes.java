@@ -8,32 +8,32 @@ import java.util.PriorityQueue;
 public class PokemonBestAttributes {
     private static PriorityQueue<Pokemon> healthMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getHealthPoints(), pokemon02.getHealthPoints());
+            return Integer.compare(pokemon02.getHealthPoints(), pokemon01.getHealthPoints()); // O antigo era, mas inverti pra virar um heap máximo return Integer.compare(pokemon01.getHealthPoints(), pokemon02.getHealthPoints())
         }
     });
     private static PriorityQueue<Pokemon> attackMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getAttackPoints(), pokemon02.getAttackPoints());
+            return Integer.compare(pokemon02.getAttackPoints(), pokemon01.getAttackPoints());
         }
     });
     private static PriorityQueue<Pokemon> defenseMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getDefensivePoints(), pokemon02.getDefensivePoints());
+            return Integer.compare(pokemon02.getDefensivePoints(), pokemon01.getDefensivePoints());
         }
     });
     private static PriorityQueue<Pokemon> speedMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getSpeedPoints(), pokemon02.getSpeedPoints());
+            return Integer.compare(pokemon02.getSpeedPoints(), pokemon01.getSpeedPoints());
         }
     });
     private static PriorityQueue<Pokemon> dexterityMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getDexterityPoints(), pokemon02.getDexterityPoints());
+            return Integer.compare(pokemon02.getDexterityPoints(), pokemon01.getDexterityPoints());
         }
     });
     private static PriorityQueue<Pokemon> specialMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
-            return Integer.compare(pokemon01.getSpecialPoints(), pokemon02.getSpecialPoints());
+            return Integer.compare(pokemon02.getSpecialPoints(), pokemon01.getSpecialPoints());
         }
     });
 
@@ -118,7 +118,7 @@ public class PokemonBestAttributes {
         Pokemon pokemonMaxDexterity = PokemonBestAttributes.getDexterityMaxHeap().peek();
         Pokemon pokemonMaxSpecial = PokemonBestAttributes.getSpecialMaxHeap().peek();
 
-        return String.format("### Pokémons com os melhores atributos em Campo:\n# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n#Maior Especial:\nNome: %s\nPontos de Especial: %s\n\n",
+        return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n#Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMaxHealth.getPokemonName(),
                 pokemonMaxHealth.getHealthPoints(),
                 pokemonMaxAttack.getPokemonName(),
