@@ -55,8 +55,8 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 2. Cada héroi e monstro deverá ter, pelo menos as seguintes implementações:
    	- [x] Um construtor.
 	- [x] Getters e Setters.
-   	- [ ] Um método abstrato chamado realizarAtaque(), o método na nossa se chama carryOutAttack, é válido?.
-	- [ ] Um método estático que gere um héroi ou um monstro, o nosso método não gera especificamente um ou outro ainda.
+   	- [x] Um método abstrato chamado realizarAtaque(), o método na nossa se chama carryOutAttack, é válido?.
+	- [x] Um método estático que gere um héroi ou um monstro, o nosso método não gera especificamente um ou outro ainda.
 3. Acomode o jogo dentro de uma classe chamada Game, que deve acomodar os seguintes requisitos:
 	- [ ] Estado do Jogo.
 	- [ ] N° de Hérois.
@@ -71,7 +71,7 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [ ] Realizar os turnos do Jogo.
 	- [ ] Controlar as ações dos players.
 	- [ ] Ordenar os players com base em algum atributo.
-	- [ ] Armazenar o resultado do ataque que será um ENUM.
+	- [x] Armazenar o resultado do ataque que será um ENUM.
 5. O Enum deve modelar o resultado de um Ataque para os valores: (Feito)
 	- [x] ERROU.
 	- [x] ACERTOU.
