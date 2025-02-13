@@ -17,6 +17,8 @@ public class TestesParaPokemon {
         *  - Médio: Settar nível 10 para os vilões.
         *  - Difícil: Settar nível 11 para os vilões.
         *  - Muito Difícil: Settar nível 12 para os vilões.
+        *  - Extremament Difiícil: Settar nível 15 para os vilões.
+        *  - Impossível: Settar nível 20 para os vilões.
         */
         PokeSOX.setSoxLevel((byte) 10); // Nível dos heróis, padrão 10, limite 127.
         PokeRocket.setRocketLevel((byte) 10); // Nível dos heróis, padrão 10, limite 127.

@@ -187,7 +187,7 @@ public class Pokemon {
         return pokemon;
     }
 
-    public PokemonStatus definePokemonStatus(PokemonStatus pokemonStatus, StatusCondition movementEffect, int effectTime) {
+    public void definePokemonStatus(PokemonStatus pokemonStatus, StatusCondition movementEffect, int effectTime) {
         if (pokemonStatus.getEffects().contains(movementEffect)) {
             int index = pokemonStatus.getEffects().indexOf(movementEffect);
 
@@ -196,10 +196,8 @@ public class Pokemon {
             times.set(index, newTime);
             pokemonStatus.setTime(times);
 
-            return pokemonStatus;
         } else {
             pokemonStatus.addStatus(movementEffect, (byte) effectTime);
-            return pokemonStatus;
         }
     }
 
