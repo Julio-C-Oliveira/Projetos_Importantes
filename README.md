@@ -52,16 +52,16 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
  	- [x] Destreza. Quando maior, mais chance de acertar um ataque.
  	- [x] Velocidade. Quanto maior, mais chance de desviar de um ataque.
  	- [x] Os atributos devem ser definidos aléatoriamente dentro de um intervalo pré definido.
-2. Cada héroi e monstro deverá ter, pelo menos as seguintes implementações:
+2. Cada héroi e monstro deverá ter, pelo menos as seguintes implementações, (Feito):
    	- [x] Um construtor.
 	- [x] Getters e Setters.
    	- [x] Um método abstrato chamado realizarAtaque(), o método na nossa se chama carryOutAttack, é válido?.
 	- [x] Um método estático que gere um héroi ou um monstro, o nosso método não gera especificamente um ou outro ainda.
 3. Acomode o jogo dentro de uma classe chamada Game, que deve acomodar os seguintes requisitos:
 	- [ ] Estado do Jogo.
-	- [ ] N° de Hérois.
-	- [ ] N° de Monstros.
-	- [ ] Player com maior/menor atributo específico no campo de batalha.
+	- [x] N° de Hérois.
+	- [x] N° de Monstros.
+	- [x] Player com maior/menor atributo específico no campo de batalha.
 	- [ ] Métodos para iniciar e finalizar o jogo.
 	- [ ] Controle de fluxo.
 	- [ ] Gerenciar os turnos.
@@ -85,4 +85,3 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 		- [ ] Menor Defesa.
 	- [ ] Atacar o mesmo inimigo.
 8. Realizar tratamento de exceções sempre que achar necessário.
-	      
