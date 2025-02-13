@@ -1,8 +1,11 @@
 package pokemonSection.attributes;
 
+import pokemonSection.constants.Type;
 import pokemonSection.pokedex.Pokemon;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class PokemonBestAttributes {
@@ -108,7 +111,7 @@ public class PokemonBestAttributes {
         PokemonBestAttributes.getSpecialMaxHeap().add(pokemon);
     }
 
-    public static String pokemonBestAttributes() {
+    public static String pokemonBestAttributesInString() {
         PokemonBestAttributes.updateAttributesHeaps();
 
         Pokemon pokemonMaxHealth = PokemonBestAttributes.getHealthMaxHeap().peek();
@@ -131,5 +134,45 @@ public class PokemonBestAttributes {
                 pokemonMaxDexterity.getDexterityPoints(),
                 pokemonMaxSpecial.getPokemonName(),
                 pokemonMaxSpecial.getSpecialPoints());
+    }
+
+    public static Map<String, DataBestAttributesClass> pokemonBestAttributesInDict() {
+        PokemonBestAttributes.updateAttributesHeaps();
+
+        Pokemon pokemonMaxHealth = PokemonBestAttributes.getHealthMaxHeap().peek();
+        Pokemon pokemonMaxAttack = PokemonBestAttributes.getAttackMaxHeap().peek();
+        Pokemon pokemonMaxDefense = PokemonBestAttributes.getDefenseMaxHeap().peek();
+        Pokemon pokemonMaxSpeed = PokemonBestAttributes.getSpeedMaxHeap().peek();
+        Pokemon pokemonMaxDexterity = PokemonBestAttributes.getDexterityMaxHeap().peek();
+        Pokemon pokemonMaxSpecial = PokemonBestAttributes.getSpecialMaxHeap().peek();
+
+        Map<String, DataBestAttributesClass> bestAttributesDict = new HashMap<>();
+
+        bestAttributesDict.put("Health", new DataBestAttributesClass(
+                pokemonMaxHealth.getPokemonName(),
+                pokemonMaxHealth.getHealthPoints()
+        ));
+        bestAttributesDict.put("Attack", new DataBestAttributesClass(
+                pokemonMaxAttack.getPokemonName(),
+                pokemonMaxAttack.getAttackPoints()
+        ));
+        bestAttributesDict.put("Defense", new DataBestAttributesClass(
+                pokemonMaxDefense.getPokemonName(),
+                pokemonMaxDefense.getDefensivePoints()
+        ));
+        bestAttributesDict.put("Speed", new DataBestAttributesClass(
+                pokemonMaxSpeed.getPokemonName(),
+                pokemonMaxSpeed.getSpeedPoints()
+        ));
+        bestAttributesDict.put("Dexterity", new DataBestAttributesClass(
+                pokemonMaxDexterity.getPokemonName(),
+                pokemonMaxDexterity.getDexterityPoints()
+        ));
+        bestAttributesDict.put("Special", new DataBestAttributesClass(
+                pokemonMaxSpecial.getPokemonName(),
+                pokemonMaxSpecial.getSpecialPoints()
+        ));
+
+        return bestAttributesDict;
     }
 }
