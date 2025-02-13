@@ -1,5 +1,6 @@
 package pokemonSection;
 
+import pokemonSection.attributes.PokemonBestAttributes;
 import pokemonSection.constants.Type;
 import pokemonSection.pokedex.DataPokemonAttackClass;
 import pokemonSection.pokedex.PokeRocket;
@@ -61,5 +62,8 @@ public class TestesParaPokemon {
         // Acessar o número de Instâncias Criadas:
         System.out.println("\nSOXs: " + PokeSOX.getNumberOfSOXs());
         System.out.println("Rockets: " + PokeRocket.getNumberOfRockets());
+
+        // Verificando se a função de ordenação está funcionando
+        System.out.println(PokemonBestAttributes.pokemonBestAttributes());
     }
 }

@@ -1,9 +1,6 @@
 package pokemonSection.pokedex;
 
-import pokemonSection.attributes.AttributesDefine;
-import pokemonSection.attributes.AttributesWarehouse;
-import pokemonSection.attributes.MoveBase;
-import pokemonSection.attributes.MoveGenerator;
+import pokemonSection.attributes.*;
 import pokemonSection.constants.Effectiveness;
 import pokemonSection.constants.StatusCondition;
 import pokemonSection.constants.Type;
@@ -181,7 +178,13 @@ public class Pokemon {
                 PokemonUtils.selectRandomMove(primaryMoves, secondaryMoves) // deixar esse último aléatorio, podendo ser qualquer um dos dois tipos.
         };
 
-        return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level);
+        // Instanciando
+        Pokemon pokemon = new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level);
+
+        // Adicionando ele no heap para ser ordenado
+        PokemonBestAttributes.addPokemonToAttibutesHeaps(pokemon);
+
+        return pokemon;
     }
 
     public PokemonStatus definePokemonStatus(PokemonStatus pokemonStatus, StatusCondition movementEffect, int effectTime) {
