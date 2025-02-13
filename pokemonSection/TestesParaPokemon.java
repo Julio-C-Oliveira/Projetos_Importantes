@@ -18,15 +18,15 @@ public class TestesParaPokemon {
         *  - Muito Difícil: Settar nível 12 para os vilões.
         */
         PokeSOX.setSoxLevel((byte) 10); // Nível dos heróis, padrão 10, limite 127.
-        PokeRocket.setRocketLevel((byte) 8); // Nível dos heróis, padrão 10, limite 127.
+        PokeRocket.setRocketLevel((byte) 10); // Nível dos heróis, padrão 10, limite 127.
 
         Pokemon pokemon1 = PokeSOX.takeAPokeSOX(
-                "01",
+                "SOX - 01",
                 (short) 47,
                 Type.NORMAL,
                 Type.FIRE);
         Pokemon pokemon2 = PokeRocket.takeAPokeRocket(
-                "02",
+                "Rocket - 01",
                 (short) 127,
                 Type.WATER,
                 Type.FIRE);
@@ -44,13 +44,16 @@ public class TestesParaPokemon {
 //        System.out.println(pokemon1.carryOutAttack(pokemon2) + "\n");
 
         Pokemon[] pokemons = {pokemon1, pokemon2};
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 100; i++) {
             DataPokemonAttackClass resultOfAttack = pokemons[i%2].carryOutAttack(pokemons[(i+1)%2]);
 
             System.out.printf("Resultado do Ataque: %s\nHabilidade Utilizada: %s | Usos restantes: %s\nDano Infligido: %d\nVida do Inimigo: %d\nVida após o Ataque: %d\n\n", resultOfAttack.hitLevel, resultOfAttack.skillUsed, resultOfAttack.remainingUses, resultOfAttack.inflictedDamage, resultOfAttack.healthPointsBeforeAttack, resultOfAttack.healthPointsAfterAttack);
 
             if (pokemons[(i+1)%2].getHealthPoints() <= 0) {
                 System.out.println("O Vencedor é o Pokémon:\n" + pokemons[i%2]);
+                System.out.println("\nO Perdedor é o Pokémon:\n" + pokemons[(i+1)%2]);
+
+                System.out.println("\nRodada Final: " + i);
                 break;
             }
         }

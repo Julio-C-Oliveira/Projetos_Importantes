@@ -183,6 +183,23 @@ public class Pokemon {
 
         return new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level);
     }
+
+    public PokemonStatus definePokemonStatus(PokemonStatus pokemonStatus, StatusCondition movementEffect, int effectTime) {
+        if (pokemonStatus.getEffects().contains(movementEffect)) {
+            int index = pokemonStatus.getEffects().indexOf(movementEffect);
+
+            ArrayList<Byte> times = pokemonStatus.getTime();
+            byte newTime = (byte) (Math.ceil((double) times.get(index) + effectTime)/2);
+            times.set(index, newTime);
+            pokemonStatus.setTime(times);
+
+            return pokemonStatus;
+        } else {
+            pokemonStatus.addStatus(movementEffect, (byte) effectTime);
+            return pokemonStatus;
+        }
+    }
+
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
         DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
         System.out.println("Nome:" + this.getPokemonName());
@@ -243,8 +260,6 @@ public class Pokemon {
             resultOfAttack.hitLevel = Effectiveness.CRITICAL_HIT;
         }
 
-
-
         // 4.1 Retorno pro Log.
         resultOfAttack.skillUsed = selectedMovement.toString();
         resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
@@ -258,6 +273,13 @@ public class Pokemon {
         resultOfAttack.healthPointsAfterAttack = target.getHealthPoints();
         resultOfAttack.effectOnAttackToEnemy = selectedMovement.getMoveEffectOnEnemy();
         resultOfAttack.effectOnAttackToMe = selectedMovement.getMoveEffectOnMe();
+
+        // 6. Efeitos Colaterais do Ataque:
+        // Em mim, tenho que verificar se o efeito já existe.
+        this.definePokemonStatus(this.getPokemonStatus(), selectedMovement.getMoveEffectOnMe(), selectedMovement.getTimeOfMoveEffectOnMe());
+
+        // No Inimigo
+        target.definePokemonStatus(target.getPokemonStatus(), selectedMovement.getMoveEffectOnEnemy(), selectedMovement.getTimeOfMoveEffectOnEnemy());
 
         return resultOfAttack;
     }

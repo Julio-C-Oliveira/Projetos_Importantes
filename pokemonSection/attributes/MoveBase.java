@@ -65,11 +65,25 @@ public class MoveBase {
         this.moveEffectOnEnemy = moveEffectOnEnemy;
     }
 
+    public byte getTimeOfMoveEffectOnEnemy() {
+        return timeOfMoveEffectOnEnemy;
+    }
+    public void setTimeOfMoveEffectOnEnemy(byte timeOfMoveEffectOnEnemy) {
+        this.timeOfMoveEffectOnEnemy = timeOfMoveEffectOnEnemy;
+    }
+
     public StatusCondition getMoveEffectOnMe() {
         return moveEffectOnMe;
     }
     public void setMoveEffectOnMe(StatusCondition moveEffectOnMe) {
         this.moveEffectOnMe = moveEffectOnMe;
+    }
+
+    public byte getTimeOfMoveEffectOnMe() {
+        return timeOfMoveEffectOnMe;
+    }
+    public void setTimeOfMoveEffectOnMe(byte timeOfMoveEffectOnMe) {
+        this.timeOfMoveEffectOnMe = timeOfMoveEffectOnMe;
     }
 
     public static MoveBase createMove(String moveName, short baseDamage,
