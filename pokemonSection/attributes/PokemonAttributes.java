@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class PokemonBestAttributes {
+public class PokemonAttributes {
     private static PriorityQueue<Pokemon> healthMaxHeap = new PriorityQueue<>(new Comparator<Pokemon>() {
         public int compare(Pokemon pokemon01, Pokemon pokemon02) {
             return Integer.compare(pokemon02.getHealthPoints(), pokemon01.getHealthPoints()); // O antigo era, mas inverti pra virar um heap máximo return Integer.compare(pokemon01.getHealthPoints(), pokemon02.getHealthPoints())
@@ -73,149 +73,149 @@ public class PokemonBestAttributes {
         return healthMaxHeap;
     }
     public static void setHealthMaxHeap(PriorityQueue<Pokemon> healthMaxHeap) {
-        PokemonBestAttributes.healthMaxHeap = healthMaxHeap;
+        PokemonAttributes.healthMaxHeap = healthMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getAttackMaxHeap() {
         return attackMaxHeap;
     }
     public static void setAttackMaxHeap(PriorityQueue<Pokemon> attackMaxHeap) {
-        PokemonBestAttributes.attackMaxHeap = attackMaxHeap;
+        PokemonAttributes.attackMaxHeap = attackMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getDefenseMaxHeap() {
         return defenseMaxHeap;
     }
     public static void setDefenseMaxHeap(PriorityQueue<Pokemon> defenseMaxHeap) {
-        PokemonBestAttributes.defenseMaxHeap = defenseMaxHeap;
+        PokemonAttributes.defenseMaxHeap = defenseMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getSpeedMaxHeap() {
         return speedMaxHeap;
     }
     public static void setSpeedMaxHeap(PriorityQueue<Pokemon> speedMaxHeap) {
-        PokemonBestAttributes.speedMaxHeap = speedMaxHeap;
+        PokemonAttributes.speedMaxHeap = speedMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getDexterityMaxHeap() {
         return dexterityMaxHeap;
     }
     public static void setDexterityMaxHeap(PriorityQueue<Pokemon> dexterityMaxHeap) {
-        PokemonBestAttributes.dexterityMaxHeap = dexterityMaxHeap;
+        PokemonAttributes.dexterityMaxHeap = dexterityMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getSpecialMaxHeap() {
         return specialMaxHeap;
     }
     public static void setSpecialMaxHeap(PriorityQueue<Pokemon> specialMaxHeap) {
-        PokemonBestAttributes.specialMaxHeap = specialMaxHeap;
+        PokemonAttributes.specialMaxHeap = specialMaxHeap;
     }
 
     public static PriorityQueue<Pokemon> getHealthMinHeap() {
         return healthMinHeap;
     }
     public static void setHealthMinHeap(PriorityQueue<Pokemon> healthMinHeap) {
-        PokemonBestAttributes.healthMinHeap = healthMinHeap;
+        PokemonAttributes.healthMinHeap = healthMinHeap;
     }
 
     public static PriorityQueue<Pokemon> getAttackMinHeap() {
         return attackMinHeap;
     }
     public static void setAttackMinHeap(PriorityQueue<Pokemon> attackMinHeap) {
-        PokemonBestAttributes.attackMinHeap = attackMinHeap;
+        PokemonAttributes.attackMinHeap = attackMinHeap;
     }
 
     public static PriorityQueue<Pokemon> getDefenseMinHeap() {
         return defenseMinHeap;
     }
     public static void setDefenseMinHeap(PriorityQueue<Pokemon> defenseMinHeap) {
-        PokemonBestAttributes.defenseMinHeap = defenseMinHeap;
+        PokemonAttributes.defenseMinHeap = defenseMinHeap;
     }
 
     public static PriorityQueue<Pokemon> getSpeedMinHeap() {
         return speedMinHeap;
     }
     public static void setSpeedMinHeap(PriorityQueue<Pokemon> speedMinHeap) {
-        PokemonBestAttributes.speedMinHeap = speedMinHeap;
+        PokemonAttributes.speedMinHeap = speedMinHeap;
     }
 
     public static PriorityQueue<Pokemon> getDexterityMinHeap() {
         return dexterityMinHeap;
     }
     public static void setDexterityMinHeap(PriorityQueue<Pokemon> dexterityMinHeap) {
-        PokemonBestAttributes.dexterityMinHeap = dexterityMinHeap;
+        PokemonAttributes.dexterityMinHeap = dexterityMinHeap;
     }
 
     public static PriorityQueue<Pokemon> getSpecialMinHeap() {
         return specialMinHeap;
     }
     public static void setSpecialMinHeap(PriorityQueue<Pokemon> specialMinHeap) {
-        PokemonBestAttributes.specialMinHeap = specialMinHeap;
+        PokemonAttributes.specialMinHeap = specialMinHeap;
     }
 
     public static void addPokemonToAttributesHeaps(Pokemon pokemon) {
-        PokemonBestAttributes.getHealthMaxHeap().add(pokemon);
-        PokemonBestAttributes.getAttackMaxHeap().add(pokemon);
-        PokemonBestAttributes.getDefenseMaxHeap().add(pokemon);
-        PokemonBestAttributes.getSpeedMaxHeap().add(pokemon);
-        PokemonBestAttributes.getDexterityMaxHeap().add(pokemon);
-        PokemonBestAttributes.getSpecialMaxHeap().add(pokemon);
+        PokemonAttributes.getHealthMaxHeap().add(pokemon);
+        PokemonAttributes.getAttackMaxHeap().add(pokemon);
+        PokemonAttributes.getDefenseMaxHeap().add(pokemon);
+        PokemonAttributes.getSpeedMaxHeap().add(pokemon);
+        PokemonAttributes.getDexterityMaxHeap().add(pokemon);
+        PokemonAttributes.getSpecialMaxHeap().add(pokemon);
 
-        PokemonBestAttributes.getHealthMinHeap().add(pokemon);
-        PokemonBestAttributes.getAttackMinHeap().add(pokemon);
-        PokemonBestAttributes.getDefenseMinHeap().add(pokemon);
-        PokemonBestAttributes.getSpeedMinHeap().add(pokemon);
-        PokemonBestAttributes.getDexterityMinHeap().add(pokemon);
-        PokemonBestAttributes.getSpecialMinHeap().add(pokemon);
+        PokemonAttributes.getHealthMinHeap().add(pokemon);
+        PokemonAttributes.getAttackMinHeap().add(pokemon);
+        PokemonAttributes.getDefenseMinHeap().add(pokemon);
+        PokemonAttributes.getSpeedMinHeap().add(pokemon);
+        PokemonAttributes.getDexterityMinHeap().add(pokemon);
+        PokemonAttributes.getSpecialMinHeap().add(pokemon);
     }
 
     public static void updateAttributesHeaps() {
-        Pokemon pokemon = PokemonBestAttributes.getHealthMaxHeap().poll();
-        PokemonBestAttributes.getHealthMaxHeap().add(pokemon);
+        Pokemon pokemon = PokemonAttributes.getHealthMaxHeap().poll();
+        PokemonAttributes.getHealthMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getAttackMaxHeap().poll();
-        PokemonBestAttributes.getAttackMaxHeap().add(pokemon);
+        pokemon = PokemonAttributes.getAttackMaxHeap().poll();
+        PokemonAttributes.getAttackMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getDefenseMaxHeap().poll();
-        PokemonBestAttributes.getDefenseMaxHeap().add(pokemon);
+        pokemon = PokemonAttributes.getDefenseMaxHeap().poll();
+        PokemonAttributes.getDefenseMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getSpeedMaxHeap().poll();
-        PokemonBestAttributes.getSpeedMaxHeap().add(pokemon);
+        pokemon = PokemonAttributes.getSpeedMaxHeap().poll();
+        PokemonAttributes.getSpeedMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getDexterityMaxHeap().poll();
-        PokemonBestAttributes.getDexterityMaxHeap().add(pokemon);
+        pokemon = PokemonAttributes.getDexterityMaxHeap().poll();
+        PokemonAttributes.getDexterityMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getSpecialMaxHeap().poll();
-        PokemonBestAttributes.getSpecialMaxHeap().add(pokemon);
+        pokemon = PokemonAttributes.getSpecialMaxHeap().poll();
+        PokemonAttributes.getSpecialMaxHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getHealthMinHeap().poll();
-        PokemonBestAttributes.getHealthMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getHealthMinHeap().poll();
+        PokemonAttributes.getHealthMinHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getAttackMinHeap().poll();
-        PokemonBestAttributes.getAttackMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getAttackMinHeap().poll();
+        PokemonAttributes.getAttackMinHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getDefenseMinHeap().poll();
-        PokemonBestAttributes.getDefenseMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getDefenseMinHeap().poll();
+        PokemonAttributes.getDefenseMinHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getSpeedMinHeap().poll();
-        PokemonBestAttributes.getSpeedMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getSpeedMinHeap().poll();
+        PokemonAttributes.getSpeedMinHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getDexterityMinHeap().poll();
-        PokemonBestAttributes.getDexterityMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getDexterityMinHeap().poll();
+        PokemonAttributes.getDexterityMinHeap().add(pokemon);
 
-        pokemon = PokemonBestAttributes.getSpecialMinHeap().poll();
-        PokemonBestAttributes.getSpecialMinHeap().add(pokemon);
+        pokemon = PokemonAttributes.getSpecialMinHeap().poll();
+        PokemonAttributes.getSpecialMinHeap().add(pokemon);
     }
 
     public static String pokemonBestAttributesInString() {
-        PokemonBestAttributes.updateAttributesHeaps();
+        PokemonAttributes.updateAttributesHeaps();
 
-        Pokemon pokemonMaxHealth = PokemonBestAttributes.getHealthMaxHeap().peek();
-        Pokemon pokemonMaxAttack = PokemonBestAttributes.getAttackMaxHeap().peek();
-        Pokemon pokemonMaxDefense = PokemonBestAttributes.getDefenseMaxHeap().peek();
-        Pokemon pokemonMaxSpeed = PokemonBestAttributes.getSpeedMaxHeap().peek();
-        Pokemon pokemonMaxDexterity = PokemonBestAttributes.getDexterityMaxHeap().peek();
-        Pokemon pokemonMaxSpecial = PokemonBestAttributes.getSpecialMaxHeap().peek();
+        Pokemon pokemonMaxHealth = PokemonAttributes.getHealthMaxHeap().peek();
+        Pokemon pokemonMaxAttack = PokemonAttributes.getAttackMaxHeap().peek();
+        Pokemon pokemonMaxDefense = PokemonAttributes.getDefenseMaxHeap().peek();
+        Pokemon pokemonMaxSpeed = PokemonAttributes.getSpeedMaxHeap().peek();
+        Pokemon pokemonMaxDexterity = PokemonAttributes.getDexterityMaxHeap().peek();
+        Pokemon pokemonMaxSpecial = PokemonAttributes.getSpecialMaxHeap().peek();
 
         return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n#Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMaxHealth.getPokemonName(),
@@ -233,14 +233,14 @@ public class PokemonBestAttributes {
     }
 
     public static String pokemonWorstAttributesInString() {
-        PokemonBestAttributes.updateAttributesHeaps();
+        PokemonAttributes.updateAttributesHeaps();
 
-        Pokemon pokemonMinHealth = PokemonBestAttributes.getHealthMinHeap().peek();
-        Pokemon pokemonMinAttack = PokemonBestAttributes.getAttackMinHeap().peek();
-        Pokemon pokemonMinDefense = PokemonBestAttributes.getDefenseMinHeap().peek();
-        Pokemon pokemonMinSpeed = PokemonBestAttributes.getSpeedMinHeap().peek();
-        Pokemon pokemonMinDexterity = PokemonBestAttributes.getDexterityMinHeap().peek();
-        Pokemon pokemonMinSpecial = PokemonBestAttributes.getSpecialMinHeap().peek();
+        Pokemon pokemonMinHealth = PokemonAttributes.getHealthMinHeap().peek();
+        Pokemon pokemonMinAttack = PokemonAttributes.getAttackMinHeap().peek();
+        Pokemon pokemonMinDefense = PokemonAttributes.getDefenseMinHeap().peek();
+        Pokemon pokemonMinSpeed = PokemonAttributes.getSpeedMinHeap().peek();
+        Pokemon pokemonMinDexterity = PokemonAttributes.getDexterityMinHeap().peek();
+        Pokemon pokemonMinSpecial = PokemonAttributes.getSpecialMinHeap().peek();
 
         return String.format("# Menor Vida:\nNome: %s\nPontos de Vida: %s\n\n# Menor Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Menor Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Menor Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Menor Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Menor Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMinHealth.getPokemonName(),
@@ -258,14 +258,14 @@ public class PokemonBestAttributes {
     }
 
     public static Map<String, DataAttributesClass> pokemonBestAttributesInDict() {
-        PokemonBestAttributes.updateAttributesHeaps();
+        PokemonAttributes.updateAttributesHeaps();
 
-        Pokemon pokemonMaxHealth = PokemonBestAttributes.getHealthMaxHeap().peek();
-        Pokemon pokemonMaxAttack = PokemonBestAttributes.getAttackMaxHeap().peek();
-        Pokemon pokemonMaxDefense = PokemonBestAttributes.getDefenseMaxHeap().peek();
-        Pokemon pokemonMaxSpeed = PokemonBestAttributes.getSpeedMaxHeap().peek();
-        Pokemon pokemonMaxDexterity = PokemonBestAttributes.getDexterityMaxHeap().peek();
-        Pokemon pokemonMaxSpecial = PokemonBestAttributes.getSpecialMaxHeap().peek();
+        Pokemon pokemonMaxHealth = PokemonAttributes.getHealthMaxHeap().peek();
+        Pokemon pokemonMaxAttack = PokemonAttributes.getAttackMaxHeap().peek();
+        Pokemon pokemonMaxDefense = PokemonAttributes.getDefenseMaxHeap().peek();
+        Pokemon pokemonMaxSpeed = PokemonAttributes.getSpeedMaxHeap().peek();
+        Pokemon pokemonMaxDexterity = PokemonAttributes.getDexterityMaxHeap().peek();
+        Pokemon pokemonMaxSpecial = PokemonAttributes.getSpecialMaxHeap().peek();
 
         Map<String, DataAttributesClass> bestAttributesDict = new HashMap<>();
 
@@ -298,14 +298,14 @@ public class PokemonBestAttributes {
     }
 
     public static Map<String, DataAttributesClass> pokemonWorstAttributesInDict() {
-        PokemonBestAttributes.updateAttributesHeaps();
+        PokemonAttributes.updateAttributesHeaps();
 
-        Pokemon pokemonMinHealth = PokemonBestAttributes.getHealthMinHeap().peek();
-        Pokemon pokemonMinAttack = PokemonBestAttributes.getAttackMinHeap().peek();
-        Pokemon pokemonMinDefense = PokemonBestAttributes.getDefenseMinHeap().peek();
-        Pokemon pokemonMinSpeed = PokemonBestAttributes.getSpeedMinHeap().peek();
-        Pokemon pokemonMinDexterity = PokemonBestAttributes.getDexterityMinHeap().peek();
-        Pokemon pokemonMinSpecial = PokemonBestAttributes.getSpecialMinHeap().peek();
+        Pokemon pokemonMinHealth = PokemonAttributes.getHealthMinHeap().peek();
+        Pokemon pokemonMinAttack = PokemonAttributes.getAttackMinHeap().peek();
+        Pokemon pokemonMinDefense = PokemonAttributes.getDefenseMinHeap().peek();
+        Pokemon pokemonMinSpeed = PokemonAttributes.getSpeedMinHeap().peek();
+        Pokemon pokemonMinDexterity = PokemonAttributes.getDexterityMinHeap().peek();
+        Pokemon pokemonMinSpecial = PokemonAttributes.getSpecialMinHeap().peek();
 
         Map<String, DataAttributesClass> worstAttributesDict = new HashMap<>();
 

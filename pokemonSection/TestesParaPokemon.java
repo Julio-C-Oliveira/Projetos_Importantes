@@ -1,6 +1,6 @@
 package pokemonSection;
 
-import pokemonSection.attributes.PokemonBestAttributes;
+import pokemonSection.attributes.PokemonAttributes;
 import pokemonSection.constants.Type;
 import pokemonSection.pokedex.DataPokemonAttackClass;
 import pokemonSection.pokedex.PokeRocket;
@@ -38,7 +38,7 @@ public class TestesParaPokemon {
         System.out.println(pokemon2 + "\n");
 
         System.out.println("## Pokémons com os melhores atributos em Campo ao Inicio do Jogo:");
-        System.out.println(PokemonBestAttributes.pokemonBestAttributesInString());
+        System.out.println(PokemonAttributes.pokemonBestAttributesInString());
 
 //        System.out.println("SEM IMUNIDADE:");
 //        for (int i = 0; i < 20; i++) System.out.println(pokemon1.carryOutAttack(pokemon2) + "\n");
@@ -70,6 +70,6 @@ public class TestesParaPokemon {
 
         // Verificando os melhores atributos:
         System.out.println("## Pokémons com os melhores atributos em Campo ao Final do Jogo:");
-        System.out.println(PokemonBestAttributes.pokemonBestAttributesInString());
+        System.out.println(PokemonAttributes.pokemonBestAttributesInString());
     }
 }
