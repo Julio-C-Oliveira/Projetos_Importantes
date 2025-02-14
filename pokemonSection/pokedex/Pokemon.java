@@ -203,7 +203,7 @@ public class Pokemon {
 
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
         DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
-        System.out.println("Nome:" + this.getPokemonName());
+        // System.out.println("Nome:" + this.getPokemonName());
 
         //  1. Verificar se o outro pókemon tem imunidade ou não
         if (target.pokemonStatus.getEffects().contains(StatusCondition.IMMUNITY)) {

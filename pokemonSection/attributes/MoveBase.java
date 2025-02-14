@@ -1,7 +1,7 @@
 package pokemonSection.attributes;
 
-import pokemonSection.constants.StatusCondition;
 import pokemonSection.constants.Type;
+import pokemonSection.constants.StatusCondition;
 
 public class MoveBase {
     private String moveName; // Nome do movimento.
@@ -9,10 +9,7 @@ public class MoveBase {
     private byte remainingUses; // Número de vezes que a habilidade poderá ser utilizada.
     private Type moveType; // Tipo do movimento.
     private StatusCondition moveEffectOnEnemy;// Efeito do Movimento no Inimigo.
-    private byte timeOfMoveEffectOnEnemy; // Tempo do efeito do movimento no Inimigo.
     private StatusCondition moveEffectOnMe; // Efeito do Movimento no próprio pokémon.
-    private byte timeOfMoveEffectOnMe; // Tempo do efeito do movimento em si mesmo.
-
     private MoveBase(String moveName, short baseDamage,
                      byte remainingUses, Type moveType,
                      StatusCondition moveEffectOnEnemy,
@@ -25,9 +22,7 @@ public class MoveBase {
         this.remainingUses = remainingUses;
         this.moveType = moveType;
         this.moveEffectOnEnemy = moveEffectOnEnemy;
-        this.timeOfMoveEffectOnEnemy = timeOfMoveEffectOnEnemy;
         this.moveEffectOnMe = moveEffectOnMe;
-        this.timeOfMoveEffectOnMe = timeOfMoveEffectOnMe;
     }
 
     public String getMoveName() {
