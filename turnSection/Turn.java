@@ -1,7 +1,7 @@
 package turnSection;
 
-import pokemonSection.Pokemon;
-import pokemonSection.DataPokemonAttackClass;
+import pokemonSection.pokedex.Pokemon;
+import pokemonSection.pokedex.DataPokemonAttackClass;
 
 public class Turn {
     private int countTurn = 0;
@@ -18,16 +18,16 @@ public class Turn {
         String event;
         DataPokemonAttackClass resultOfAttack = friend.carryOutAttack(foe);
         
-        event = String.format("""
-        | Turno: %d
-        | %s usou %s!
-        | Resultado do Ataque: %s
-        | Usos restantes: %d
-        | Dano Infligido: %d
-        | Vida de %s: %d
-        | Vida após o Ataque: %d
-        --------------------------------------------------------------------
-        """,
+        event = String.format(
+        "| Turno: %d\n" + 
+        "| %s usou %s!\n" + 
+        "| Resultado do Ataque: %s\n" + 
+        "| Usos restantes: %d\n" + 
+        "| Dano Infligido: %d\n" + 
+        "| Vida de %s: %d\n" + 
+        "| Vida após o Ataque: %d\n" +
+        "--------------------------------------------------------------------"
+        ,
         ++countTurn,
         friend.getPokemonName(),
         resultOfAttack.skillUsed,
@@ -38,6 +38,16 @@ public class Turn {
         resultOfAttack.healthPointsBeforeAttack,
         resultOfAttack.healthPointsAfterAttack);
         return event;
+    }
+
+    public boolean verifyIfDead(Pokemon pokemon){
+        if (pokemon.getHealthPoints() <= 0)
+            return true;
+        return false;
+    }
+
+    public int getCurrentTurn(){
+        return countTurn;
     }
 
 }

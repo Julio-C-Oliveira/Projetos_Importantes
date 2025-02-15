@@ -8,6 +8,8 @@ public class MoveBase {
     private short baseDamage; // Dano base do movimento.
     private byte remainingUses; // Número de vezes que a habilidade poderá ser utilizada.
     private Type moveType; // Tipo do movimento.
+    private byte timeOfMoveEffectOnEnemy; // Tempo de efeito sobre o inimigo.
+    private byte timeOfMoveEffectOnMe; // Tempo de efeito no próprio pokémon.
     private StatusCondition moveEffectOnEnemy;// Efeito do Movimento no Inimigo.
     private StatusCondition moveEffectOnMe; // Efeito do Movimento no próprio pokémon.
     private MoveBase(String moveName, short baseDamage,

@@ -9,6 +9,6 @@ public class Game {
     // Logs
 
     // Métodos para Iniciar e Finalizar o jogo
-    // Gerencia de Turnos
+    // Gerência de Turnos
     // Diferentes Níveis de Dificuldade
 }

@@ -1,4 +1,5 @@
-import pokemonSection.TestesParaPokemon;
+import testSection.TestesParaPokemon;
+
 
 public class Main {
     public static void main(String[] args) {
