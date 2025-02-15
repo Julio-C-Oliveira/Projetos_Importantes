@@ -6,7 +6,7 @@ import pokemonSection.pokedex.DataPokemonAttackClass;
 public class Turn {
     private int countTurn = 0;
 
-    public int getNextPokemon(Pokemon friend, Pokemon foe){
+    public int getPriorityAttack(Pokemon friend, Pokemon foe){
         if (friend.getSpeedPoints() >= foe.getSpeedPoints()){
             return 0;
         } else {
@@ -14,7 +14,7 @@ public class Turn {
         }
     }
 
-    public String makeAction(Pokemon friend, Pokemon foe){
+    private String getPokemonAction(Pokemon friend, Pokemon foe){
         String event;
         DataPokemonAttackClass resultOfAttack = friend.carryOutAttack(foe);
         
@@ -28,7 +28,7 @@ public class Turn {
         "| Vida após o Ataque: %d\n" +
         "--------------------------------------------------------------------"
         ,
-        ++countTurn,
+        countTurn,
         friend.getPokemonName(),
         resultOfAttack.skillUsed,
         resultOfAttack.hitLevel,
@@ -39,6 +39,34 @@ public class Turn {
         resultOfAttack.healthPointsAfterAttack);
         return event;
     }
+
+    public TurnAction commitTurn(Pokemon friend, Pokemon foe){
+        ++countTurn;
+        TurnAction turnAction = new TurnAction();
+        String foeAttacks;
+        String friendAttacks;
+        String friendWins = "O Vencedor é o Pokémon:\n" + friend.toString() + "\n\nO Perdedor é o Pokémon:\n" + foe.toString();
+        String foeWins = "O Vencedor é o Pokémon:\n" + foe.toString() + "\n\nO Perdedor é o Pokémon:\n" + friend.toString();
+
+        friendAttacks = getPokemonAction(friend, foe); // Amigo ataca.
+        turnAction.setFriendAction(friendAttacks); // Salva ataque aliado.
+        // Se pokémon inimigo morre...
+        if (verifyIfDead(foe)){
+            turnAction.setIsDead(friendWins); // Salva morte do inimigo e declara amigo vencedor
+            return turnAction;
+        }
+        
+        foeAttacks = getPokemonAction(foe, friend); // Inimigo ataca primeiro.
+        turnAction.setFoeAction(foeAttacks); // Salva ataque inimigo.
+        // Se pokémon amigo morre...
+        if (verifyIfDead(friend)){
+            turnAction.setIsDead(foeWins); // Salva morte do amigo e declara inimigo vencedor
+            return turnAction;
+        }
+
+        return turnAction;
+    }
+
 
     public boolean verifyIfDead(Pokemon pokemon){
         if (pokemon.getHealthPoints() <= 0)

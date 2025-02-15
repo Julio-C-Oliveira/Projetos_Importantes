@@ -1,6 +1,7 @@
 package testSection;
 
 import turnSection.Turn;
+import turnSection.TurnAction;
 import logSection.Log;
 import pokemonSection.pokedex.PokeRocket;
 import pokemonSection.pokedex.PokeSOX;
@@ -41,38 +42,34 @@ public class TestesParaPokemon {
         log.recordBattleInstant(friend, foe);
         log.recordCurrentBestAttributes(turn.getCurrentTurn());
         
-        String battleEvent;
-        int priority = turn.getNextPokemon(friend, foe);
+        TurnAction turnActionResult = new TurnAction(); // Classe temporária para salvar estado do jogo.
+        int priority = turn.getPriorityAttack(friend, foe);
         if (priority == 1){
-            battleEvent = turn.makeAction(foe, friend);
-            log.appendLog(battleEvent);
+            turnActionResult = turn.commitTurn(foe, friend);
             log.recordCurrentBestAttributes(turn.getCurrentTurn());
+            log.appendLog(turnActionResult.getFoeAction());
+            if (turn.verifyIfDead(friend)){
+                log.appendLog(turnActionResult.getIsDead());
+            }
         }
-
 
         for (int i = 0; i < 100; i++) {
-            if (turn.verifyIfDead(friend)){
-                battleEvent = "O Vencedor é o Pokémon:\n" + foe.toString() + "\n\nO Perdedor é o Pokémon:\n" + friend.toString();
-                log.appendLog(battleEvent);
-                break;
-            }
-
+            turnActionResult = turn.commitTurn(friend, foe);
+            log.appendLog(turnActionResult.getFriendAction());
             if (turn.verifyIfDead(foe)){
-                battleEvent = "O Vencedor é o Pokémon:\n" + friend.toString() + "\n\nO Perdedor é o Pokémon:\n" + foe.toString();
-                log.appendLog(battleEvent);
+                log.appendLog(turnActionResult.getIsDead());
                 break;
             }
-
-            if (i%2 == priority){
-                battleEvent = turn.makeAction(friend, foe);
-            } else {
-                battleEvent = turn.makeAction(foe, friend);
+            
+            log.appendLog(turnActionResult.getFoeAction());
+            if (turn.verifyIfDead(friend)){
+                log.appendLog(turnActionResult.getIsDead());
+                break;
             }
-
-            log.appendLog(battleEvent);
             log.recordCurrentBestAttributes(turn.getCurrentTurn());
         }
-
+        
+        log.recordCurrentBestAttributes(turn.getCurrentTurn());
         log.showLog();
     }
 }
