@@ -217,7 +217,7 @@ public class PokemonAttributes {
         Pokemon pokemonMaxDexterity = PokemonAttributes.getDexterityMaxHeap().peek();
         Pokemon pokemonMaxSpecial = PokemonAttributes.getSpecialMaxHeap().peek();
 
-        return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n#Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
+        return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMaxHealth.getPokemonName(),
                 pokemonMaxHealth.getHealthPoints(),
                 pokemonMaxAttack.getPokemonName(),

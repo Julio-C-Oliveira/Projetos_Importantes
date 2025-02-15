@@ -51,19 +51,3 @@ public class Turn {
     }
 
 }
-
-// event = String.format("Turno: %d\n" +
-// "Evento: " +  
-// "Resultado do Ataque: %s\n" +
-// "Habilidade Utilizada: %s | Usos restantes: %s\n" +
-// "Dano Infligido: %d\n" +
-// "Vida do Inimigo: %d\n" +
-// "Vida após o Ataque: %d\n\n", 
-// ++countTurn,
-// resultOfAttack.hitLevel,
-// resultOfAttack.skillUsed, 
-// resultOfAttack.remainingUses, 
-// resultOfAttack.inflictedDamage, 
-// resultOfAttack.healthPointsBeforeAttack, 
-// resultOfAttack.healthPointsAfterAttack);
-// return event;

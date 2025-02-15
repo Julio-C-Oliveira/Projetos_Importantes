@@ -1,52 +1,3 @@
-// public class testBattle {
-//     static Log log = new Log();
-//     static Turn turn = new Turn();
-
-//     public static void testar() {
-//         Pokemon friend = Pokemon.takeAPokemon(
-//                 "01",
-//                 (short) 47,
-//                 Type.NORMAL,
-//                 Type.FIRE);
-//         Pokemon foe = Pokemon.takeAPokemon(
-//                 "02",
-//                 (short) 127,
-//                 Type.WATER,
-//                 Type.FIRE);
-        
-//         String event;
-//         int priority = turn.getNextPokemon(friend, foe);
-//         if (priority == 1){
-//             event = turn.makeAction(foe, friend);
-//             log.appendLog(event);
-//         }
-
-//         for (int i = 0; i < 30; i++) {
-//             if (foe.getHealthPoints() <= 0){
-//                 log.appendLog("O pokémon vencedor é: " + friend.getPokemonName());
-//                 break;
-//             }
-            
-//             if (friend.getHealthPoints() <= 0){
-//                 log.appendLog("O pokémon vencedor é: " + foe.getPokemonName());
-//                 break;
-//             }
-
-//             if (i%2 == priority){
-//                 event = turn.makeAction(friend, foe);
-//             } else {
-//                 event = turn.makeAction(foe, friend);
-//             }
-//             log.appendLog(event);
-            
-//         }
-//     }
-//     public static void main(String[] args) {
-//         testar();
-//         log.showLog();
-//     }
-// }
-
 package testSection;
 
 import logSection.AttributeLog;
@@ -103,12 +54,12 @@ public class TestesParaPokemon {
 
         for (int i = 0; i < 100; i++) {
             if (turn.verifyIfDead(friend)){
-                battleEvent = "O Vencedor é o Pokémon:\n" + foe.getPokemonName() + "\nO Perdedor é o Pokémon:\n" + friend.getPokemonName();
+                battleEvent = "O Vencedor é o Pokémon:\n" + foe.toString() + "\n\nO Perdedor é o Pokémon:\n" + friend.toString();
                 battleLog.appendLog(battleEvent);
                 break;
             }
             if (turn.verifyIfDead(foe)){
-                battleEvent = "O Vencedor é o Pokémon:\n" + friend.getPokemonName() + "\nO Perdedor é o Pokémon:\n" + foe.getPokemonName();
+                battleEvent = "O Vencedor é o Pokémon:\n" + friend.toString() + "\n\nO Perdedor é o Pokémon:\n" + foe.toString();
                 battleLog.appendLog(battleEvent);
                 break;
             }
@@ -124,9 +75,5 @@ public class TestesParaPokemon {
 
         attributeLog.showLog();
         battleLog.showLog();
-    }
-
-    public static void main(String[] args) {
-        testar();
     }
 }
