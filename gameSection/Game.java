@@ -89,14 +89,14 @@ public class Game {
         // 1. Settar o nível de dificuldade:
         this.setDifficultyLevel(3); // Adicionar input externo depois.
 
-        // 2. Salvar o Número de Instâncias:
+        // 2. Criar os Inimigos e Aliados, definir por váriavel:
+        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(10, 5);
+
+        // 3. Salvar o Número de Instâncias:
         setNumberOfHeros(PokeSOX.getNumberOfSOXs());
         setNumberOfVillains(PokeRocket.getNumberOfRockets());
 
-        // 3. Criar os Inimigos e Aliados, definir por váriavel:
-        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(10, 5);
-
-        // 3. Selecionar dois por velocidade e enviar para o turno, rodar até uma das classes perder todos os seus pokémons. Após cada turno perguntar se deve continuar ou encerrar.
+        // 4. Selecionar dois por velocidade e enviar para o turno, rodar até uma das classes perder todos os seus pokémons. Após cada turno perguntar se deve continuar ou encerrar.
 
     }
 }
