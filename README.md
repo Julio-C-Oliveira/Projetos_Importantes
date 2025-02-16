@@ -66,7 +66,7 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [ ] Controle de fluxo, não entendi o que é isso.
 	- [ ] Gerenciar os turnos.
 	- [ ] Armazenar os Logs do Jogo, crie uma classe Log para este requisito.
-	- [ ] Diferentes níveis de dificuldade, com monstros mais fortes dependendo do nível.
+	- [x] Diferentes níveis de dificuldade, com monstros mais fortes dependendo do nível.
 4. Acomode os Turnos dentro de uma classe chamada Turno, que deve atender os seguintes requisitos:
 	- [ ] Realizar os turnos do Jogo.
 	- [ ] Controlar as ações dos players.
@@ -77,8 +77,8 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [x] ACERTOU.
 	- [x] CRITICAL_HIT.
 6. A batalha deve ser simulada automáticamente:
-	- [ ] Mecanismos que permitem visualizar o resultado do jogo devem ser implementados.
-	- [ ] Método pra visualizar as ocorrências ao longo do jogo, a partir dos logs.
+	- [x] Mecanismos que permitem visualizar o resultado do jogo devem ser implementados.
+	- [x] Método pra visualizar as ocorrências ao longo do jogo, a partir dos logs.
 7. Implemente uma inteligência artificial naive para os monstros, tais como:
 	- [ ] Atacar o herói com o menor atributo.
 		- [ ] Menor HP.

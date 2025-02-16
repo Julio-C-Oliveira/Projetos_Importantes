@@ -1,6 +1,7 @@
 package pokemonSection.pokedex;
 
 import pokemonSection.attributes.MoveBase;
+import pokemonSection.constants.Type;
 
 import java.util.Random;
 
@@ -33,5 +34,31 @@ public class PokemonUtils {
         Random random = new Random();
         MoveBase[] movements = PokemonUtils.mergeMoveLists(primaryMovements, secondaryMovements);
         return movements[random.nextInt(movements.length)];
+    }
+
+    public static Type[] getAllTypes() {
+        return new Type[]{Type.NORMAL,
+                Type.FIRE,
+                Type.WATER,
+                Type.GRASS,
+                Type.ELETRIC,
+                Type.ICE,
+                Type.FIGHTING,
+                Type.POISON,
+                Type.GROUND,
+                Type.FLYING,
+                Type.PSYCHIC,
+                Type.BUG,
+                Type.ROCK,
+                Type.GHOST,
+                Type.DRAGON,
+                Type.DARK,
+                Type.STEEL};
+    }
+
+    public static Type selectRandomType() {
+        Random random = new Random();
+        Type[] allTypes = PokemonUtils.getAllTypes();
+        return allTypes[random.nextInt(allTypes.length)];
     }
 }
