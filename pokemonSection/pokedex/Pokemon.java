@@ -201,6 +201,12 @@ public class Pokemon {
         }
     }
 
+    public int pokemonRemaingMovementsUses() {
+        int remainhMovesUses = 0;
+        for (MoveBase move : this.getMovements()) remainhMovesUses += move.getRemainingUses();
+        return remainhMovesUses;
+    }
+
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
         DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
         // System.out.println("Nome:" + this.getPokemonName());
@@ -240,6 +246,7 @@ public class Pokemon {
         int damageInflicted;
 
         MoveBase selectedMovement;
+
         do {
             selectedMovement = PokemonUtils.selectRandomMove(this.getMovements());
         } while (selectedMovement.getRemainingUses() <= 0);

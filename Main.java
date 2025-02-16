@@ -1,7 +1,8 @@
-import testSection.TestesParaPokemon;
+import gameSection.Game;
 
 public class Main {
     public static void main(String[] args) {
-        TestesParaPokemon.testar(); // Fiz uma função para testar as funções das classes relacionadas aos Pokémons para não poluir a main.
+        Game game = new Game();
+        game.run(3, 3, 5);
     }
 }

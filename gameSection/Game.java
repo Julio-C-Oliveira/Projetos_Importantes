@@ -1,14 +1,13 @@
 package gameSection;
 
-import pokemonSection.attributes.AttributesWarehouse;
-import pokemonSection.constants.Type;
+import logSection.Log;
 import pokemonSection.pokedex.PokeRocket;
 import pokemonSection.pokedex.PokeSOX;
 import pokemonSection.pokedex.Pokemon;
 import pokemonSection.pokedex.PokemonUtils;
+import turnSection.Turn;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 // Players com os maiores atributos.
 // Players com os menores atributos.
@@ -21,6 +20,7 @@ public class Game {
     // gameState, o que exatamente eu tenho que guardar aqui?
     int numberOfHeros;
     int numberOfVillains;
+    ArrayList<Log> allLogs = new ArrayList<>();
 
     public int getNumberOfHeros() {
         return numberOfHeros;
@@ -34,6 +34,13 @@ public class Game {
     }
     public void setNumberOfVillains(int numberOfVillains) {
         this.numberOfVillains = numberOfVillains;
+    }
+
+    public ArrayList<Log> getAllLogs() {
+        return allLogs;
+    }
+    public void setAllLogs(ArrayList<Log> allLogs) {
+        this.allLogs = allLogs;
     }
 
     private void setDifficultyLevel(int level) {
@@ -85,18 +92,48 @@ public class Game {
         return pokemonsInstanceDict;
     }
 
-    public void run() {
+    public void addInstanceToHeap(Map<String, Pokemon[]> pokemonsInstanceDict, PriorityQueue<Pokemon> pokemonHerosHeap, PriorityQueue<Pokemon> pokemonVillainsHeap) {
+        pokemonHerosHeap.addAll(Arrays.asList(pokemonsInstanceDict.get("Heros")));
+        pokemonVillainsHeap.addAll(Arrays.asList(pokemonsInstanceDict.get("Villains")));
+    }
+
+    public void run(int difficultLevel, int numberOfHerosToGenerate, int numberOfVillainsToGenerate) {
         // 1. Settar o nível de dificuldade:
-        this.setDifficultyLevel(3); // Adicionar input externo depois.
+        this.setDifficultyLevel(difficultLevel); // Adicionar input externo depois.
 
         // 2. Criar os Inimigos e Aliados, definir por váriavel:
-        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(10, 5);
+        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(numberOfHerosToGenerate, numberOfVillainsToGenerate);
 
         // 3. Salvar o Número de Instâncias:
         setNumberOfHeros(PokeSOX.getNumberOfSOXs());
         setNumberOfVillains(PokeRocket.getNumberOfRockets());
 
         // 4. Selecionar dois por velocidade e enviar para o turno, rodar até uma das classes perder todos os seus pokémons. Após cada turno perguntar se deve continuar ou encerrar.
+        // 4.1 Criar os Heaps:
+        PriorityQueue<Pokemon> speedMaxHeapHeros = new PriorityQueue<>(new Comparator<Pokemon>() {
+            public int compare(Pokemon pokemon01, Pokemon pokemon02) {
+                return Integer.compare(pokemon02.getSpeedPoints(), pokemon01.getSpeedPoints());
+            }
+        });
+        PriorityQueue<Pokemon> speedMaxHeapVillains = new PriorityQueue<>(new Comparator<Pokemon>() {
+            public int compare(Pokemon pokemon01, Pokemon pokemon02) {
+                return Integer.compare(pokemon02.getSpeedPoints(), pokemon01.getSpeedPoints());
+            }
+        });
+
+        // 4.2 Adicionar as Instâncias ao Heap:
+        this.addInstanceToHeap(pokemonsInstanceDict, speedMaxHeapHeros, speedMaxHeapVillains);
+
+        // 4.3 Pegar os melhores e mandar pro Turno:
+        Pokemon hero;
+        Pokemon villain;
+        while (!speedMaxHeapHeros.isEmpty() && !speedMaxHeapVillains.isEmpty()) {
+            hero = speedMaxHeapHeros.poll();
+            villain = speedMaxHeapVillains.poll();
+
+            this.getAllLogs().add(Turn.runTurn(hero, villain));
+        }
+
 
     }
 }

@@ -1,8 +1,10 @@
 package pokemonSection.pokedex;
 
+import pokemonSection.attributes.AttributesWarehouse;
 import pokemonSection.attributes.MoveBase;
 import pokemonSection.constants.Type;
 
+import java.util.Map;
 import java.util.Random;
 
 public class PokemonUtils {
