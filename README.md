@@ -64,19 +64,19 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [x] Player com maior/menor atributo específico no campo de batalha.
 	- [ ] Métodos para iniciar e finalizar o jogo, não entendi como assim finalizar? o jogo vai ser iniciado e vai rodar em segundos, pra quê serve a função de finalizar se o jogo é automático.
 	- [ ] Controle de fluxo, não entendi o que é isso.
-	- [ ] Gerenciar os turnos.
-	- [ ] Armazenar os Logs do Jogo, crie uma classe Log para este requisito.
+	- [x] Gerenciar os turnos.
+	- [x] Armazenar os Logs do Jogo, crie uma classe Log para este requisito.
 	- [x] Diferentes níveis de dificuldade, com monstros mais fortes dependendo do nível.
 4. Acomode os Turnos dentro de uma classe chamada Turno, que deve atender os seguintes requisitos:
-	- [ ] Realizar os turnos do Jogo.
-	- [ ] Controlar as ações dos players.
+	- [x] Realizar os turnos do Jogo.
+	- [x] Controlar as ações dos players.
 	- [ ] Ordenar os players com base em algum atributo.
 	- [x] Armazenar o resultado do ataque que será um ENUM.
-5. O Enum deve modelar o resultado de um Ataque para os valores: (Feito)
+5. O Enum deve modelar o resultado de um Ataque para os valores (Feito):
 	- [x] ERROU.
 	- [x] ACERTOU.
 	- [x] CRITICAL_HIT.
-6. A batalha deve ser simulada automáticamente:
+6. A batalha deve ser simulada automáticamente (Feito):
 	- [x] Mecanismos que permitem visualizar o resultado do jogo devem ser implementados.
 	- [x] Método pra visualizar as ocorrências ao longo do jogo, a partir dos logs.
 7. Implemente uma inteligência artificial naive para os monstros, tais como:
@@ -84,4 +84,4 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 		- [ ] Menor HP.
 		- [ ] Menor Defesa.
 	- [ ] Atacar o mesmo inimigo.
-8. Realizar tratamento de exceções sempre que achar necessário.
+8. Realizar tratamento de exceções sempre que achar necessário. (Feito).
