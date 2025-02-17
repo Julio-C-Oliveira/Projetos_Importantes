@@ -103,37 +103,37 @@ public class MoveGenerator {
 
         // Tipo ROCK. Todos os abaixo ainda não foram implementados, esses só são para não gerar erros.
         movementsDict.put(Type.ROCK, new MoveBase[]{
-                createMove("Sturdy", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Solid Punch", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Solid Rock", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
+                createMove("Sturdy", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Solid Punch", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Solid Rock", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
         });
 
         // Tipo GHOST.
         movementsDict.put(Type.GHOST, new MoveBase[]{
-                createMove("Cursed Body", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Amaldiçoar", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Possessão", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
+                createMove("Cursed Body", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Amaldiçoar", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Possessão", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
         });
 
         // Tipo DRAGON.
         movementsDict.put(Type.DRAGON, new MoveBase[]{
-                createMove("Baforada de Fogo", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Fire Charge", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Levantar Vôo", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
+                createMove("Baforada de Fogo", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Fire Charge", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Levantar Vôo", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
         });
 
         // Tipo DARK.
         movementsDict.put(Type.DARK, new MoveBase[]{
-                createMove("Intimidar", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Assombrar", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Shadow Steal", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
+                createMove("Intimidar", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Assombrar", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Shadow Steal", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
         });
 
         // Tipo STEEL.
         movementsDict.put(Type.STEEL, new MoveBase[]{
-                createMove("Fortalecer", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Bullet", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Tétano", (short) 0, (byte) 0, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
+                createMove("Fortalecer", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Bullet", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
+                createMove("Tétano", (short) 75, (byte) 75, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0)
         });
 
         return movementsDict;
