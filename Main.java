@@ -1,12 +1,5 @@
 import gameSection.Game;
-/*
-public class Main {
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.run(3, 1, 1);
-    }
-}
-*/
+
 public class Main {
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -27,25 +20,31 @@ public class Main {
                     "     - 6: Extremamente Difícil                               \n" +
                     "     - 7: Impossível                                         \n" +
                     "<num de heróis> número de pókemon aliados                    \n" +
-                    "<num de vilões> número de pókemon inimigos                   \n");
-            return;
-        }
-
-        if (args.length != 3) {
-            System.out.println("Erro: Número de argumentos inválido.");
-            System.out.println("Use '--help' para ver as opções.");
+                    "<num de vilões> número de pókemon inimigos                   \n\n" +
+                    "Exemplo: java Main 3 5 5                                     \n");
             return;
         }
 
         try {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("Erro: Faltam parâmetros. Use '--help' para ver as opções.");
+            }
+
             int difficultyLevel = Integer.parseInt(args[0]);
             int numberOfHeros = Integer.parseInt(args[1]);
             int numberOfVillains = Integer.parseInt(args[2]);
+
+            if (difficultyLevel < 1 || numberOfHeros < 1 || numberOfVillains < 1) {
+                throw new IllegalArgumentException("Erro: Todos os valores devem ser maiores ou iguais à 1.");
+            }
 
             Game game = new Game();
             game.run(difficultyLevel, numberOfHeros, numberOfVillains);
         } catch (NumberFormatException e) {
             System.out.println("Erro: Todos os parâmetros devem ser números inteiros.");
+            System.out.println("Use '--help' para ver as opções.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             System.out.println("Use '--help' para ver as opções.");
         }
     }
