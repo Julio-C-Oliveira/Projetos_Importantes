@@ -67,10 +67,10 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [x] Gerenciar os turnos.
 	- [x] Armazenar os Logs do Jogo, crie uma classe Log para este requisito.
 	- [x] Diferentes níveis de dificuldade, com monstros mais fortes dependendo do nível.
-4. Acomode os Turnos dentro de uma classe chamada Turno, que deve atender os seguintes requisitos:
+4. Acomode os Turnos dentro de uma classe chamada Turno, que deve atender os seguintes requisitos: (Feito)
 	- [x] Realizar os turnos do Jogo.
 	- [x] Controlar as ações dos players.
-	- [ ] Ordenar os players com base em algum atributo.
+	- [x] Ordenar os players com base em algum atributo.
 	- [x] Armazenar o resultado do ataque que será um ENUM.
 5. O Enum deve modelar o resultado de um Ataque para os valores (Feito):
 	- [x] ERROU.

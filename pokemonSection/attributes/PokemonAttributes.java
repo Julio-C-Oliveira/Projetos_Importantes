@@ -217,7 +217,7 @@ public class PokemonAttributes {
         Pokemon pokemonMaxDexterity = PokemonAttributes.getDexterityMaxHeap().peek();
         Pokemon pokemonMaxSpecial = PokemonAttributes.getSpecialMaxHeap().peek();
 
-        return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
+        /* return String.format("# Maior Vida:\nNome: %s\nPontos de Vida: %s\n\n# Maior Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Maior Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Maior Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Maior Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Maior Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMaxHealth.getPokemonName(),
                 pokemonMaxHealth.getHealthPoints(),
                 pokemonMaxAttack.getPokemonName(),
@@ -229,7 +229,22 @@ public class PokemonAttributes {
                 pokemonMaxDexterity.getPokemonName(),
                 pokemonMaxDexterity.getDexterityPoints(),
                 pokemonMaxSpecial.getPokemonName(),
-                pokemonMaxSpecial.getSpecialPoints());
+                pokemonMaxSpecial.getSpecialPoints()); */
+        return String.format(
+                "|------------------------------||------------------------------||------------------------------|\n" +
+                "| Maior Vida:                  || Maior Ataque:                || Maior Defesa:                |\n" +
+                "| Nome: %-22s || Nome: %-22s || Nome: %-22s |\n" +
+                "| Pontos de Vida: %-12s || Pontos de Ataque: %-10s || Pontos de Defesa: %-10s |\n" +
+                "|------------------------------||------------------------------||------------------------------|\n" +
+                "| Maior Velocidade:            || Maior Destreza:              || Maior Especial:              |\n" +
+                "| Nome: %-22s || Nome: %-22s || Nome: %-22s |\n" +
+                "| Pontos de Velocidade: %-6s || Pontos de Destreza: %-8s || Pontos de Especial: %-8s |\n" +
+                "|------------------------------||------------------------------||------------------------------|\n",
+                pokemonMaxHealth.getPokemonName(), pokemonMaxAttack.getPokemonName(), pokemonMaxDefense.getPokemonName(),
+                pokemonMaxHealth.getHealthPoints(), pokemonMaxAttack.getAttackPoints(), pokemonMaxDefense.getDefensivePoints(),
+                pokemonMaxSpeed.getPokemonName(), pokemonMaxDexterity.getPokemonName(), pokemonMaxSpecial.getPokemonName(),
+                pokemonMaxSpeed.getSpeedPoints(), pokemonMaxDexterity.getDexterityPoints(), pokemonMaxSpecial.getSpecialPoints()
+                );
     }
 
     public static String pokemonWorstAttributesInString() {
@@ -242,7 +257,7 @@ public class PokemonAttributes {
         Pokemon pokemonMinDexterity = PokemonAttributes.getDexterityMinHeap().peek();
         Pokemon pokemonMinSpecial = PokemonAttributes.getSpecialMinHeap().peek();
 
-        return String.format("# Menor Vida:\nNome: %s\nPontos de Vida: %s\n\n# Menor Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Menor Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Menor Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Menor Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Menor Especial:\nNome: %s\nPontos de Especial: %s\n",
+        /*return String.format("# Menor Vida:\nNome: %s\nPontos de Vida: %s\n\n# Menor Ataque:\nNome: %s\nPontos de Ataque: %s\n\n# Menor Defesa:\nNome: %s\nPontos de Defesa: %s\n\n# Menor Velocidade:\nNome: %s\nPontos de Velocidade: %s\n\n# Menor Destreza:\nNome: %s\nPontos de Destreza: %s\n\n# Menor Especial:\nNome: %s\nPontos de Especial: %s\n",
                 pokemonMinHealth.getPokemonName(),
                 pokemonMinHealth.getHealthPoints(),
                 pokemonMinAttack.getPokemonName(),
@@ -254,7 +269,22 @@ public class PokemonAttributes {
                 pokemonMinDexterity.getPokemonName(),
                 pokemonMinDexterity.getDexterityPoints(),
                 pokemonMinSpecial.getPokemonName(),
-                pokemonMinSpecial.getSpecialPoints());
+                pokemonMinSpecial.getSpecialPoints());*/
+        return String.format(
+                "|------------------------------||------------------------------||------------------------------|\n" +
+                "| Menor Vida:                  || Menor Ataque:                || Menor Defesa:                |\n" +
+                "| Nome: %-22s || Nome: %-22s || Nome: %-22s |\n" +
+                "| Pontos de Vida: %-12s || Pontos de Ataque: %-10s || Pontos de Defesa: %-10s |\n" +
+                "|------------------------------||------------------------------||------------------------------|\n" +
+                "| Menor Velocidade:            || Menor Destreza:              || Menor Especial:              |\n" +
+                "| Nome: %-22s || Nome: %-22s || Nome: %-22s |\n" +
+                "| Pontos de Velocidade: %-6s || Pontos de Destreza: %-8s || Pontos de Especial: %-8s |\n" +
+                "|------------------------------||------------------------------||------------------------------|\n",
+                pokemonMinHealth.getPokemonName(), pokemonMinAttack.getPokemonName(), pokemonMinDefense.getPokemonName(),
+                pokemonMinHealth.getHealthPoints(), pokemonMinAttack.getAttackPoints(), pokemonMinDefense.getDefensivePoints(),
+                pokemonMinSpeed.getPokemonName(), pokemonMinDexterity.getPokemonName(), pokemonMinSpecial.getPokemonName(),
+                pokemonMinSpeed.getSpeedPoints(), pokemonMinDexterity.getDexterityPoints(), pokemonMinSpecial.getSpecialPoints()
+        );
     }
 
     public static Map<String, DataAttributesClass> pokemonBestAttributesInDict() {

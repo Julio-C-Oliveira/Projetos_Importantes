@@ -127,11 +127,19 @@ public class Game {
         // 4.3 Pegar os melhores e mandar pro Turno:
         Pokemon hero;
         Pokemon villain;
+        int counter = 1;
+
         while (!speedMaxHeapHeros.isEmpty() && !speedMaxHeapVillains.isEmpty()) {
             hero = speedMaxHeapHeros.poll();
             villain = speedMaxHeapVillains.poll();
 
+            System.out.printf("##### BATALHA POKÉMON %03d #####\n\n", counter); // Isso tem que ser adicionado ao Log.
             this.getAllLogs().add(Turn.runTurn(hero, villain));
         }
+
+        // Verificar quem ganhou a batalha por críterios:
+        // 1. Qual equipe tem mais personagens vivos, ou seja, com a vida acima de 0.
+        // 2. Quantia de vida.
+        // 3. Sorteio.
     }
 }
