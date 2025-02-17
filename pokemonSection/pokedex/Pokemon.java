@@ -209,7 +209,20 @@ public class Pokemon {
 
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
         DataPokemonAttackClass resultOfAttack = new DataPokemonAttackClass();
-        // System.out.println("Nome:" + this.getPokemonName());
+
+        int damageInflicted;
+
+        MoveBase selectedMovement;
+
+        do {
+            selectedMovement = PokemonUtils.selectRandomMove(this.getMovements());
+        } while (selectedMovement.getRemainingUses() <= 0);
+        selectedMovement.setRemainingUses((byte) (selectedMovement.getRemainingUses()-1));
+
+        // 4.1 Retorno pro Log.
+        resultOfAttack.skillUsed = selectedMovement.toString();
+        resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
+        resultOfAttack.healthPointsBeforeAttack = target.getHealthPoints();
 
         //  1. Verificar se o outro pókemon tem imunidade ou não
         if (target.pokemonStatus.getEffects().contains(StatusCondition.IMMUNITY)) {
@@ -226,6 +239,8 @@ public class Pokemon {
             }
 
             resultOfAttack.hitLevel = Effectiveness.ERROU;
+            resultOfAttack.inflictedDamage = 0;
+            resultOfAttack.healthPointsAfterAttack = target.getHealthPoints();
             return resultOfAttack;
         }
 
@@ -236,21 +251,14 @@ public class Pokemon {
 
         if (enemyDeviateChance > myLuckToHit) {
             resultOfAttack.hitLevel = Effectiveness.ERROU;
+            resultOfAttack.inflictedDamage = 0;
+            resultOfAttack.healthPointsAfterAttack = target.getHealthPoints();
             return resultOfAttack;
         }
 
         // 3. Se o ataque vai ser critico ou não. vou usar essa lógica: (defesa do inimigo + destreza do inimigo) / (ataque + velocidade * 2) * 100
         double notCriticizeChance = ((double) (this.getDefensivePoints() + this.getDexterityPoints()) / (target.getAttackPoints() + target.getSpeedPoints() * 2) * 100);
         double myLuckToCriticize = random.nextDouble() * 100;
-
-        int damageInflicted;
-
-        MoveBase selectedMovement;
-
-        do {
-            selectedMovement = PokemonUtils.selectRandomMove(this.getMovements());
-        } while (selectedMovement.getRemainingUses() <= 0);
-        selectedMovement.setRemainingUses((byte) (selectedMovement.getRemainingUses()-1));
 
         if (notCriticizeChance > myLuckToCriticize) {
             // Cálculo do dano causado: (meu ataque + meu poder / 2) / defesa do inimigo
@@ -268,16 +276,13 @@ public class Pokemon {
             resultOfAttack.hitLevel = Effectiveness.CRITICAL_HIT;
         }
 
-        // 4.1 Retorno pro Log.
-        resultOfAttack.skillUsed = selectedMovement.toString();
-        resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
+        // 4.2 Retorno pro Log.
         resultOfAttack.inflictedDamage = damageInflicted;
-        resultOfAttack.healthPointsBeforeAttack = target.getHealthPoints();
 
         // 5. Atualizar a vida do inimigo.
         target.setHealthPoints((short) (target.getHealthPoints() - damageInflicted));
 
-        // 4.2 Retorno pro Log.
+        // 4.3 Retorno pro Log.
         resultOfAttack.healthPointsAfterAttack = target.getHealthPoints();
         resultOfAttack.effectOnAttackToEnemy = selectedMovement.getMoveEffectOnEnemy();
         resultOfAttack.effectOnAttackToMe = selectedMovement.getMoveEffectOnMe();
