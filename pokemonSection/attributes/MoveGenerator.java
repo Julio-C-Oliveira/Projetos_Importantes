@@ -22,7 +22,7 @@ public class MoveGenerator {
                 createMove("Voadora", (short) 200, (byte) 10, Type.NORMAL, StatusCondition.CONFUSION, (byte) 1, StatusCondition.NENHUM, (byte) 0),
                 createMove("Investida", (short) 75, (byte) 100, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
                 createMove("Technician", (short) 0, (byte) 15, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.EXCITED, (byte) 3),
-                createMove("Immunity", (short) 0, (byte) 7, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.IMMUNITY, (byte) 3)});
+                createMove("Immunity", (short) 0, (byte) 3, Type.NORMAL, StatusCondition.NENHUM, (byte) 0, StatusCondition.IMMUNITY, (byte) 3)});
 
         // Tipo FIRE.
         movementsDict.put(Type.FIRE, new MoveBase[]{
@@ -49,7 +49,7 @@ public class MoveGenerator {
         movementsDict.put(Type.ELETRIC, new MoveBase[]{
                 createMove("Eletrificar", (short) 55, (byte) 20, Type.ELETRIC, StatusCondition.PARALYSIS, (byte) 2, StatusCondition.ELECTRIFIED, (byte) 2),
                 createMove("Rajada do Trovão", (short) 250, (byte) 7, Type.ELETRIC, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Estático", (short) 0, (byte) 7, Type.ELETRIC, StatusCondition.CONFUSION, (byte) 3, StatusCondition.IMMUNITY, (byte) 1) //Talvez não possa atacar, mas não pode ser atingido.
+                createMove("Estático", (short) 0, (byte) 3, Type.ELETRIC, StatusCondition.CONFUSION, (byte) 3, StatusCondition.IMMUNITY, (byte) 1) //Talvez não possa atacar, mas não pode ser atingido.
         });
 
         // Tipo ICE.
@@ -70,14 +70,14 @@ public class MoveGenerator {
         movementsDict.put(Type.POISON, new MoveBase[]{
                 createMove("Poison Point", (short) 5, (byte) 5, Type.POISON, StatusCondition.POISON, (byte) 2, StatusCondition.HEALING, (byte) 2),
                 createMove("Sopro Ácido", (short) 150, (byte) 15, Type.POISON, StatusCondition.POISON, (byte) 3, StatusCondition.NENHUM, (byte) 0),
-                createMove("Disperse", (short) 0, (byte) 7, Type.POISON, StatusCondition.POISON, (byte) 2, StatusCondition.IMMUNITY, (byte) 1)
+                createMove("Disperse", (short) 0, (byte) 3, Type.POISON, StatusCondition.POISON, (byte) 2, StatusCondition.IMMUNITY, (byte) 1)
         });
 
         // Tipo GROUND.
         movementsDict.put(Type.GROUND, new MoveBase[]{
                 createMove("Sand Veil", (short) 100, (byte) 20, Type.GROUND, StatusCondition.CONFUSION, (byte) 3, StatusCondition.NENHUM, (byte) 0),
                 createMove("Tempestade de Areia", (short) 250, (byte) 10, Type.GROUND, StatusCondition.NENHUM, (byte) 0, StatusCondition.NENHUM, (byte) 0),
-                createMove("Dissolver", (short) 0, (byte) 7, Type.GROUND, StatusCondition.NENHUM, (byte) 0, StatusCondition.IMMUNITY, (byte) 2)
+                createMove("Dissolver", (short) 0, (byte) 3, Type.GROUND, StatusCondition.NENHUM, (byte) 0, StatusCondition.IMMUNITY, (byte) 2)
         });
 
         // Tipo FLYING.
