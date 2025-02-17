@@ -51,7 +51,6 @@ public class Turn {
         String foeWins = "O Vencedor é o Pokémon:\n" + foe + "\n\nO Perdedor é o Pokémon:\n" + friend;
 
         friendAttacks = getPokemonAction(friend, foe); // Amigo ataca.
-        System.out.println(friend.pokemonRemaingMovementsUses());
         turnAction.setFriendAction(friendAttacks); // Salva ataque aliado.
         // Se pokémon inimigo morre...
         if (verifyIfDead(foe) || foe.pokemonRemaingMovementsUses() <= 0){
@@ -59,8 +58,7 @@ public class Turn {
             return turnAction;
         }
         
-        foeAttacks = getPokemonAction(foe, friend); // Inimigo ataca primeiro.
-        System.out.println(foe.pokemonRemaingMovementsUses());
+        foeAttacks = getPokemonAction(foe, friend); // Inimigo ataca.
         turnAction.setFoeAction(foeAttacks); // Salva ataque inimigo.
         // Se pokémon amigo morre...
         if (verifyIfDead(friend) || friend.pokemonRemaingMovementsUses() <= 0){

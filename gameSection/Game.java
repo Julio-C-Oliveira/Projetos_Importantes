@@ -88,7 +88,7 @@ public class Game {
         }
 
         pokemonsInstanceDict.put("Heros", soxs);
-        pokemonsInstanceDict.put("Villains", soxs);
+        pokemonsInstanceDict.put("Villains", rockets);
         return pokemonsInstanceDict;
     }
 
@@ -133,7 +133,5 @@ public class Game {
 
             this.getAllLogs().add(Turn.runTurn(hero, villain));
         }
-
-
     }
 }
