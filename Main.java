@@ -38,12 +38,12 @@ public class Main {
         }
 
         try {
-            int numJogadores = Integer.parseInt(args[0]);
-            int modo = Integer.parseInt(args[1]);
-            int dificuldade = Integer.parseInt(args[2]);
+            int difficultyLevel = Integer.parseInt(args[0]);
+            int numberOfHeros = Integer.parseInt(args[1]);
+            int numberOfVillains = Integer.parseInt(args[2]);
 
             Game game = new Game();
-            game.run(numJogadores, modo, dificuldade);
+            game.run(difficultyLevel, numberOfHeros, numberOfVillains);
         } catch (NumberFormatException e) {
             System.out.println("Erro: Todos os parâmetros devem ser números inteiros.");
             System.out.println("Use '--help' para ver as opções.");
