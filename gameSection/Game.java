@@ -135,6 +135,7 @@ public class Game {
 
             System.out.printf("##### BATALHA POKÉMON %03d #####\n\n", counter); // Isso tem que ser adicionado ao Log.
             this.getAllLogs().add(Turn.runTurn(hero, villain));
+            counter++;
         }
 
         // Verificar quem ganhou a batalha por críterios:
