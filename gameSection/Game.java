@@ -183,6 +183,8 @@ public class Game {
         // 9. Lógica das Batalhas:
 
         gameLog.append("### BATALHA INICIADA ###\n\n");
+        
+        // Em uma execução não apareceu nada mais estava rodando, verificar a possibilidade de estar travando no loop de alguma forma.
 
         while (gameState) {
 
