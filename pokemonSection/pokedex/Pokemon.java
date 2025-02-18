@@ -2,6 +2,7 @@ package pokemonSection.pokedex;
 
 import pokemonSection.attributes.*;
 import pokemonSection.constants.Effectiveness;
+import pokemonSection.constants.SideOfForce;
 import pokemonSection.constants.StatusCondition;
 import pokemonSection.constants.Type;
 
@@ -24,9 +25,10 @@ public class Pokemon {
     private Type secondaryType; // Tipo do Pokémon.
     private MoveBase[] movements = new MoveBase[3];
     private byte level;
+    SideOfForce sideOfForce;
 
     // Construtor privado para controlar a criação das instâncias.
-    protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements, byte level) {
+    protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements, byte level, SideOfForce sideOfForce) {
         this.pokemonName = pokemonName;
         this.healthPoints = healthPoints;
         this.pokedexNumber = pokedexNumber;
@@ -40,6 +42,7 @@ public class Pokemon {
         this.secondaryType = secondaryType;
         this.movements = movements;
         this.level = level;
+        this.sideOfForce = sideOfForce;
     }
 
     // Getters e Setters da Classe.
@@ -134,8 +137,15 @@ public class Pokemon {
         this.level = level;
     }
 
+    public SideOfForce getSideOfForce() {
+        return sideOfForce;
+    }
+    public void setSideOfForce(SideOfForce sideOfForce) {
+        this.sideOfForce = sideOfForce;
+    }
+
     // Funções da Classe:
-    protected static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType, byte level) { // Cria uma instância de Pokémon.
+    protected static Pokemon takeAPokemon(String pokemonName, short pokedexNumber, Type primaryType, Type secondaryType, byte level, SideOfForce sideOfForce) { // Cria uma instância de Pokémon.
         // Pegando as Estatísticas e Movimentos disponíveis:
         Map<Type, AttributesWarehouse> attributesDict = AttributesDefine.takePokemonAttributes();
         Map<Type, MoveBase[]> movementsDict = MoveGenerator.generateAllMoves();
@@ -179,7 +189,7 @@ public class Pokemon {
         };
 
         // Instanciando
-        Pokemon pokemon = new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level);
+        Pokemon pokemon = new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level, sideOfForce);
 
         // Adicionando ele no heap para ser ordenado
         PokemonAttributes.addPokemonToAttributesHeaps(pokemon);
@@ -202,9 +212,9 @@ public class Pokemon {
     }
 
     public int pokemonRemaingMovementsUses() {
-        int remainhMovesUses = 0;
-        for (MoveBase move : this.getMovements()) remainhMovesUses += move.getRemainingUses();
-        return remainhMovesUses;
+        int remaingMovesUses = 0;
+        for (MoveBase move : this.getMovements()) remaingMovesUses += move.getRemainingUses();
+        return remaingMovesUses;
     }
 
     public DataPokemonAttackClass carryOutAttack(Pokemon target) {  // Seleciona um dos movimentos disponiveis e o utiliza.
@@ -220,6 +230,8 @@ public class Pokemon {
         selectedMovement.setRemainingUses((byte) (selectedMovement.getRemainingUses()-1));
 
         // 4.1 Retorno pro Log.
+        resultOfAttack.pokemonAggressor = this.getPokemonName();
+        resultOfAttack.pokemonAssaulted = target.getPokemonName();
         resultOfAttack.skillUsed = selectedMovement.toString();
         resultOfAttack.remainingUses = selectedMovement.getRemainingUses();
         resultOfAttack.healthPointsBeforeAttack = target.getHealthPoints();
