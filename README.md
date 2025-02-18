@@ -58,12 +58,12 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
    	- [x] Um método abstrato chamado realizarAtaque(), o método na nossa se chama carryOutAttack, é válido?.
 	- [x] Um método estático que gere um héroi ou um monstro, o nosso método não gera especificamente um ou outro ainda.
 3. Acomode o jogo dentro de uma classe chamada Game, que deve acomodar os seguintes requisitos:
-	- [ ] Estado do Jogo, como assim? o que deve ser armazenado aqui, já que o jogo é automatico..
+	- [x] Estado do Jogo, como assim? o que deve ser armazenado aqui, já que o jogo é automatico..
 	- [x] N° de Hérois.
 	- [x] N° de Monstros.
 	- [x] Player com maior/menor atributo específico no campo de batalha.
-	- [ ] Métodos para iniciar e finalizar o jogo, não entendi como assim finalizar? o jogo vai ser iniciado e vai rodar em segundos, pra quê serve a função de finalizar se o jogo é automático.
-	- [ ] Controle de fluxo, não entendi o que é isso.
+	- [x] Métodos para iniciar e finalizar o jogo, não entendi como assim finalizar? o jogo vai ser iniciado e vai rodar em segundos, pra quê serve a função de finalizar se o jogo é automático.
+	- [x] Controle de fluxo, não entendi o que é isso.
 	- [x] Gerenciar os turnos.
 	- [x] Armazenar os Logs do Jogo, crie uma classe Log para este requisito.
 	- [x] Diferentes níveis de dificuldade, com monstros mais fortes dependendo do nível.
