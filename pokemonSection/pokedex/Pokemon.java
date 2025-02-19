@@ -201,7 +201,7 @@ public class Pokemon {
         Pokemon pokemon = new Pokemon(pokemonName, healthPoints, pokedexNumber, attackPoints, defensivePoints, speedPoints, dexterityPoints, specialPoints, pokemonStatus, primaryType, secondaryType, movements, level, sideOfForce);
 
         // Adicionando ele no heap para ser ordenado
-        PokemonAttributes.addPokemonToAttributesHeaps(pokemon);
+        PokemonAttributes.addPokemonToAttributesList(pokemon);
 
         return pokemon;
     }

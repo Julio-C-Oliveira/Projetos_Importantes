@@ -8,7 +8,6 @@ import pokemonSection.pokedex.PokeSOX;
 import pokemonSection.pokedex.Pokemon;
 
 import java.util.List;
-import java.util.Set;
 
 public class Log {
     private static String attackLog;
@@ -80,20 +79,6 @@ public class Log {
         }
     }
 
-    public static void startGameLog(Set<Pokemon> speedOrderedPokemonsList) {
-        // 7. Ordem de ataque:
-        Log.getGameLog().append("##### Pokémons ordenados por velocidade #####\n");
-        for (Pokemon pokemon : speedOrderedPokemonsList) {
-            Log.getGameLog().append(String.format("Nome: %s\nPontos de Velocidade: %s\n\n", pokemon.getPokemonName(), pokemon.getSpeedPoints()));
-        }
-
-        // 8. Melhores e piores em campo, no ínicio:
-        Log.getGameLog().append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
-        Log.getGameLog().append(PokemonAttributes.pokemonBestAttributesInString());
-        Log.getGameLog().append(PokemonAttributes.pokemonWorstAttributesInString()).append("\n");
-
-        Log.getGameLog().append("### BATALHA INICIADA ###\n\n");
-    }
     public static void startGameLog(List<Pokemon> speedOrderedPokemonsList) {
         // 7. Ordem de ataque:
         Log.getGameLog().append("##### Pokémons ordenados por velocidade #####\n");
@@ -103,8 +88,7 @@ public class Log {
 
         // 8. Melhores e piores em campo, no ínicio:
         Log.getGameLog().append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
-        Log.getGameLog().append(PokemonAttributes.pokemonBestAttributesInString());
-        Log.getGameLog().append(PokemonAttributes.pokemonWorstAttributesInString()).append("\n");
+        Log.getGameLog().append(PokemonAttributes.pokemonBestAndWorstAttributesInString()).append("\n");
 
         Log.getGameLog().append("### BATALHA INICIADA ###\n\n");
     }
@@ -114,8 +98,7 @@ public class Log {
     public static void endGameLog() {
         // 8. Melhores e piores em campo, no final:
         Log.getGameLog().append("\n").append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
-        Log.getGameLog().append(PokemonAttributes.pokemonBestAttributesInString());
-        Log.getGameLog().append(PokemonAttributes.pokemonWorstAttributesInString());
+        Log.getGameLog().append(PokemonAttributes.pokemonBestAndWorstAttributesInString());
     }
     public static void printGameLog() {
         System.out.println(Log.getGameLog());

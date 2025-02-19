@@ -1,5 +1,6 @@
 package gameSection;
 
+import pokemonSection.attributes.PokemonAttributes;
 import pokemonSection.pokedex.*;
 
 import java.util.*;
@@ -115,41 +116,33 @@ public class Game {
         this.setDifficultyLevel(difficultLevel);
 
         // 2. Criar os Inimigos e Aliados, definir por variável:
-        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", numberOfHeroesToGenerate, numberOfVillainsToGenerate);
         Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(numberOfHeroesToGenerate, numberOfVillainsToGenerate);
-        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", Arrays.stream(pokemonsInstanceDict.get("Heroes")).toList().size(), Arrays.stream(pokemonsInstanceDict.get("Villains")).toList().size());
 
         // 3. Salvar o Número de Instâncias:
         setNumberOfHeros(PokeSOX.getNumberOfSOXs());
         setNumberOfVillains(PokeRocket.getNumberOfRockets());
-        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", this.getNumberOfHeros(), this.getNumberOfVillains());
 
         // 4. Separar os heróis e vilões:
         Pokemon[] heroesList = pokemonsInstanceDict.get("Heroes");
         Pokemon[] villainsList = pokemonsInstanceDict.get("Villains");
-        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", heroesList.length, villainsList.length);
 
-        // 5. Adicionar as Instâncias à lista:
-        List<Pokemon> speedOrderedPokemonsList = new ArrayList<>();
-        this.addInstanceToTreeSet(pokemonsInstanceDict, speedOrderedPokemonsList);
+        // 5. Iniciando o Log:
+        PokemonAttributes.updateLists();
+        Log.startGameLog(PokemonAttributes.getSpeedList());
 
-        // 6. Ordenar por Velocidade:
-        speedOrderedPokemonsList.sort(Comparator.comparingInt(Pokemon::getSpeedPoints).reversed());
-
-        // 7. Iniciando o Log:
-        Log.startGameLog(speedOrderedPokemonsList);
-
-        // 8. Lógica das Batalhas:
+        // 6. Lógica das Batalhas:
         Turn turn = new Turn();
 
         while (gameState) {
-            // 8.5. Lógica do Turno:
+            // 6.5. Lógica do Turno:
             Turn.setTurnCounter(Turn.getTurnCounter()+1);
-            for (Pokemon chosenPokemon : speedOrderedPokemonsList) {
+            for (Pokemon chosenPokemon : PokemonAttributes.getSpeedList()) {
                 turn.runTurn(chosenPokemon, heroesList, villainsList);
                 if (!Game.gameState) break;
             }
         }
+
+        // 7. Adicionando o final ao Log:
         Log.addTurnToGameLog();
         Log.endGameLog();
         Log.printGameLog();
