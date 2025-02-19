@@ -57,8 +57,8 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 	- [x] Getters e Setters.
    	- [x] Um método abstrato chamado realizarAtaque(), o método na nossa se chama carryOutAttack, é válido?.
 	- [x] Um método estático que gere um héroi ou um monstro, o nosso método não gera especificamente um ou outro ainda.
-3. Acomode o jogo dentro de uma classe chamada Game, que deve acomodar os seguintes requisitos:
-	- [x] Estado do Jogo, como assim? o que deve ser armazenado aqui, já que o jogo é automatico..
+3. Acomode o jogo dentro de uma classe chamada Game, que deve acomodar os seguintes requisitos: (Feito)
+	- [x] Estado do Jogo.
 	- [x] N° de Hérois.
 	- [x] N° de Monstros.
 	- [x] Player com maior/menor atributo específico no campo de batalha.
