@@ -40,7 +40,6 @@ public class Game {
 
     private void setDifficultyLevel(int level) {
         //  Nível padrão para herói e vilão é 10
-
         PokeSOX.setSoxLevel((byte) 10);
 
         switch (level) {
@@ -99,6 +98,14 @@ public class Game {
     }
 
     public void addInstanceToTreeSet(Map<String, Pokemon[]> pokemonsInstanceDict, Set<Pokemon> pokemons) {
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", Arrays.stream(pokemonsInstanceDict.get("Heroes")).toList().size(), Arrays.stream(pokemonsInstanceDict.get("Villains")).toList().size());
+
+        pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Heroes")));
+        pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Villains")));
+    }
+    public void addInstanceToTreeSet(Map<String, Pokemon[]> pokemonsInstanceDict, List<Pokemon> pokemons) {
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", Arrays.stream(pokemonsInstanceDict.get("Heroes")).toList().size(), Arrays.stream(pokemonsInstanceDict.get("Villains")).toList().size());
+
         pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Heroes")));
         pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Villains")));
     }
@@ -108,21 +115,26 @@ public class Game {
         this.setDifficultyLevel(difficultLevel);
 
         // 2. Criar os Inimigos e Aliados, definir por variável:
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", numberOfHeroesToGenerate, numberOfVillainsToGenerate);
         Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(numberOfHeroesToGenerate, numberOfVillainsToGenerate);
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", Arrays.stream(pokemonsInstanceDict.get("Heroes")).toList().size(), Arrays.stream(pokemonsInstanceDict.get("Villains")).toList().size());
 
         // 3. Salvar o Número de Instâncias:
         setNumberOfHeros(PokeSOX.getNumberOfSOXs());
         setNumberOfVillains(PokeRocket.getNumberOfRockets());
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", this.getNumberOfHeros(), this.getNumberOfVillains());
 
         // 4. Separar os heróis e vilões:
         Pokemon[] heroesList = pokemonsInstanceDict.get("Heroes");
         Pokemon[] villainsList = pokemonsInstanceDict.get("Villains");
+        System.out.printf("Número de Heróis: %d | Número de Vilões: %d\n\n", heroesList.length, villainsList.length);
 
-        // 5. Ordenar por Velocidade:
-        Set<Pokemon> speedOrderedPokemonsList = new TreeSet<>(Comparator.comparingInt(Pokemon::getSpeedPoints).reversed());
-
-        // 6. Adicionar as Instâncias à lista:
+        // 5. Adicionar as Instâncias à lista:
+        List<Pokemon> speedOrderedPokemonsList = new ArrayList<>();
         this.addInstanceToTreeSet(pokemonsInstanceDict, speedOrderedPokemonsList);
+
+        // 6. Ordenar por Velocidade:
+        speedOrderedPokemonsList.sort(Comparator.comparingInt(Pokemon::getSpeedPoints).reversed());
 
         // 7. Iniciando o Log:
         Log.startGameLog(speedOrderedPokemonsList);
@@ -132,6 +144,7 @@ public class Game {
 
         while (gameState) {
             // 8.5. Lógica do Turno:
+            Turn.setTurnCounter(Turn.getTurnCounter()+1);
             for (Pokemon chosenPokemon : speedOrderedPokemonsList) {
                 turn.runTurn(chosenPokemon, heroesList, villainsList);
                 if (!Game.gameState) break;

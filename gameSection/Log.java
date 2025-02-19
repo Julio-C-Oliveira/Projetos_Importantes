@@ -7,6 +7,7 @@ import pokemonSection.pokedex.PokeRocket;
 import pokemonSection.pokedex.PokeSOX;
 import pokemonSection.pokedex.Pokemon;
 
+import java.util.List;
 import java.util.Set;
 
 public class Log {
@@ -80,6 +81,20 @@ public class Log {
     }
 
     public static void startGameLog(Set<Pokemon> speedOrderedPokemonsList) {
+        // 7. Ordem de ataque:
+        Log.getGameLog().append("##### Pokémons ordenados por velocidade #####\n");
+        for (Pokemon pokemon : speedOrderedPokemonsList) {
+            Log.getGameLog().append(String.format("Nome: %s\nPontos de Velocidade: %s\n\n", pokemon.getPokemonName(), pokemon.getSpeedPoints()));
+        }
+
+        // 8. Melhores e piores em campo, no ínicio:
+        Log.getGameLog().append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
+        Log.getGameLog().append(PokemonAttributes.pokemonBestAttributesInString());
+        Log.getGameLog().append(PokemonAttributes.pokemonWorstAttributesInString()).append("\n");
+
+        Log.getGameLog().append("### BATALHA INICIADA ###\n\n");
+    }
+    public static void startGameLog(List<Pokemon> speedOrderedPokemonsList) {
         // 7. Ordem de ataque:
         Log.getGameLog().append("##### Pokémons ordenados por velocidade #####\n");
         for (Pokemon pokemon : speedOrderedPokemonsList) {

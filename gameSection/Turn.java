@@ -7,14 +7,13 @@ import pokemonSection.pokedex.Pokemon;
 import java.util.Random;
 
 public class Turn {
-    private int turnCounter = 0;
+    private static int turnCounter = 0;
 
-
-    public int getTurnCounter() {
-        return turnCounter;
+    public static int getTurnCounter() {
+        return Turn.turnCounter;
     }
-    public void setTurnCounter(int turnCounter) {
-        this.turnCounter = turnCounter;
+    public static void setTurnCounter(int turnCounter) {
+        Turn.turnCounter = turnCounter;
     }
 
     public static void areFitToFight(Pokemon pokemon) {
@@ -23,6 +22,12 @@ public class Turn {
 
     private static boolean isAlive(Pokemon pokemon) {
         return (pokemon.getHealthPoints() > 0);
+    }
+
+    private static Pokemon selectAWeakPokemon (Pokemon[] pokemons) {
+        // Decisão vai ser entre 3 atributos, vida, velocidade e defesa, o atributo a ser utilizado como base, vai ser definido aléatoriamente:
+        Random random = new Random();
+        return null;
     }
 
     private static Pokemon selectARandomPokemon(Pokemon[] pokemons) {
@@ -45,8 +50,6 @@ public class Turn {
     }
 
     public void runTurn(Pokemon chosenPokemon, Pokemon[] heroesList, Pokemon[] villainsList) {
-        this.setTurnCounter(this.getTurnCounter()+1);
-
         if (Turn.howManyAreInConditionToFight(heroesList) <= 0) {
             Log.addResultToTurn(SideOfForce.DARK);
             Game.setGameState(false);
