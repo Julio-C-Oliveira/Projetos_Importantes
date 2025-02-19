@@ -79,9 +79,10 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 6. A batalha deve ser simulada automáticamente (Feito):
 	- [x] Mecanismos que permitem visualizar o resultado do jogo devem ser implementados.
 	- [x] Método pra visualizar as ocorrências ao longo do jogo, a partir dos logs.
-7. Implemente uma inteligência artificial naive para os monstros, tais como:
-	- [ ] Atacar o herói com o menor atributo.
-		- [ ] Menor HP.
-		- [ ] Menor Defesa.
-	- [ ] Atacar o mesmo inimigo.
+7. Implemente uma inteligência artificial naive para os monstros, tais como: (Feito)
+	- [x] Atacar o herói com o menor atributo.
+		- [x] Menor HP.
+		- [x] Menor Defesa.
+		- [x] Menor Velocidade.
+	- [x] Atacar o mesmo inimigo.
 8. Realizar tratamento de exceções sempre que achar necessário. (Feito).
