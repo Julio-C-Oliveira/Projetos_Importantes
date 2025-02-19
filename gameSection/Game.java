@@ -1,6 +1,5 @@
 package gameSection;
 
-import pokemonSection.constants.SideOfForce;
 import pokemonSection.pokedex.*;
 
 import java.util.*;
@@ -99,48 +98,9 @@ public class Game {
         return pokemonsInstanceDict;
     }
 
-    private static boolean isThereAnyoneAlive(Pokemon[] pokemons) {
-        int timeHealthPoints = 0;
-        for (Pokemon pokemon : pokemons) timeHealthPoints += pokemon.getHealthPoints();
-        return (timeHealthPoints > 0);
-    }
-
-    private static boolean isAlive(Pokemon pokemon) {
-        return (pokemon.getHealthPoints() > 0);
-    }
-
-    private static Pokemon selectARandomPokemon(Pokemon[] pokemons) {
-        Random random = new Random();
-        return pokemons[random.nextInt(pokemons.length)];
-    }
-
-    public static Pokemon selectAPokemon(Pokemon[] pokemons) {
-        Pokemon targetPokemon;
-        do {
-            targetPokemon = Game.selectARandomPokemon(pokemons);
-        } while (!Game.isAlive(targetPokemon));
-        return targetPokemon;
-    }
-
-    public static boolean anyoneHaveAMoveToUse(Pokemon[] pokemons) {
-        int remaingMovesUses = 0;
-        for (Pokemon pokemon : pokemons) remaingMovesUses += pokemon.pokemonRemaingMovementsUses();
-        return (remaingMovesUses > 0);
-    }
-
     public void addInstanceToTreeSet(Map<String, Pokemon[]> pokemonsInstanceDict, Set<Pokemon> pokemons) {
         pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Heroes")));
         pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Villains")));
-    }
-
-    public static void areFitToFight(Pokemon pokemon) {
-        if (pokemon.pokemonRemaingMovementsUses() <= 0 || pokemon.getHealthPoints() <= 0) pokemon.setAreInConditionToFight(false);
-    }
-
-    public static int howManyAreInConditionToFight(Pokemon[] pokemons) {
-        int inConditionToFight = 0;
-        for (Pokemon pokemon : pokemons) inConditionToFight += (pokemon.getAreInConditionToFight()) ? 1 : 0;
-        return inConditionToFight;
     }
 
     public void run(int difficultLevel, int numberOfHeroesToGenerate, int numberOfVillainsToGenerate) {
@@ -169,13 +129,12 @@ public class Game {
 
         // 8. Lógica das Batalhas:
         Turn turn = new Turn();
-        Pokemon targetPokemon;
-        DataPokemonAttackClass resultOfAttack;
 
         while (gameState) {
             // 8.5. Lógica do Turno:
             for (Pokemon chosenPokemon : speedOrderedPokemonsList) {
                 turn.runTurn(chosenPokemon, heroesList, villainsList);
+                if (!Game.gameState) break;
             }
         }
         Log.addTurnToGameLog();
