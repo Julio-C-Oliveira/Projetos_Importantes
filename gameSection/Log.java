@@ -80,13 +80,11 @@ public class Log {
     }
 
     public static void startGameLog(List<Pokemon> speedOrderedPokemonsList) {
-        // 7. Ordem de ataque:
         Log.getGameLog().append("##### Pokémons ordenados por velocidade #####\n");
         for (Pokemon pokemon : speedOrderedPokemonsList) {
             Log.getGameLog().append(String.format("Nome: %s\nPontos de Velocidade: %s\n\n", pokemon.getPokemonName(), pokemon.getSpeedPoints()));
         }
 
-        // 8. Melhores e piores em campo, no ínicio:
         Log.getGameLog().append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
         Log.getGameLog().append(PokemonAttributes.pokemonBestAndWorstAttributesInString()).append("\n");
 
@@ -96,7 +94,6 @@ public class Log {
         Log.getGameLog().append(Log.getTurnLog());
     }
     public static void endGameLog() {
-        // 8. Melhores e piores em campo, no final:
         Log.getGameLog().append("\n").append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
         Log.getGameLog().append(PokemonAttributes.pokemonBestAndWorstAttributesInString());
     }
