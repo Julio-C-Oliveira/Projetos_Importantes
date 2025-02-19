@@ -1,26 +1,15 @@
 package gameSection;
 
-import logSection.Log;
-import pokemonSection.attributes.MoveBase;
-import pokemonSection.attributes.PokemonAttributes;
 import pokemonSection.constants.SideOfForce;
 import pokemonSection.pokedex.*;
-import turnSection.Turn;
 
 import java.util.*;
 
-// Players com os maiores atributos.
-// Players com os menores atributos.
-// Logs
-
-// Métodos para Iniciar e Finalizar o jogo
-// Gerência de Turnos
-
 public class Game {
-    // gameState, o que exatamente eu tenho que guardar aqui?
-    int numberOfHeros;
-    int numberOfVillains;
-    ArrayList<Log> allLogs = new ArrayList<>();
+    private int numberOfHeros;
+    private int numberOfVillains;
+    private ArrayList<Log> allLogs = new ArrayList<>();
+    private static boolean gameState = true;
 
     public int getNumberOfHeros() {
         return numberOfHeros;
@@ -43,8 +32,15 @@ public class Game {
         this.allLogs = allLogs;
     }
 
+    public static boolean isGameState() {
+        return gameState;
+    }
+    public static void setGameState(boolean gameState) {
+        Game.gameState = gameState;
+    }
+
     private void setDifficultyLevel(int level) {
-        //  Nível padrão para héroi e vilão é 10
+        //  Nível padrão para herói e vilão é 10
 
         PokeSOX.setSoxLevel((byte) 10);
 
@@ -98,7 +94,7 @@ public class Game {
             );
         }
 
-        pokemonsInstanceDict.put("Heros", soxs);
+        pokemonsInstanceDict.put("Heroes", soxs);
         pokemonsInstanceDict.put("Villains", rockets);
         return pokemonsInstanceDict;
     }
@@ -133,34 +129,33 @@ public class Game {
     }
 
     public void addInstanceToTreeSet(Map<String, Pokemon[]> pokemonsInstanceDict, Set<Pokemon> pokemons) {
-        pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Heros")));
+        pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Heroes")));
         pokemons.addAll(Arrays.asList(pokemonsInstanceDict.get("Villains")));
     }
 
-    public void run(int difficultLevel, int numberOfHerosToGenerate, int numberOfVillainsToGenerate) {
-        // 0. Variáveis que serão utilizadas:
-        DataPokemonAttackClass resultOfAttack;
-        boolean gameState = true;
+    public static void areFitToFight(Pokemon pokemon) {
+        if (pokemon.pokemonRemaingMovementsUses() <= 0 || pokemon.getHealthPoints() <= 0) pokemon.setAreInConditionToFight(false);
+    }
 
-        String attackLog;
-        StringBuilder turnLog = new StringBuilder();
-        StringBuilder battleLog = new StringBuilder();
-        StringBuilder gameLog = new StringBuilder();
+    public static int howManyAreInConditionToFight(Pokemon[] pokemons) {
+        int inConditionToFight = 0;
+        for (Pokemon pokemon : pokemons) inConditionToFight += (pokemon.getAreInConditionToFight()) ? 1 : 0;
+        return inConditionToFight;
+    }
 
-        int turnCounter = 0;
-
+    public void run(int difficultLevel, int numberOfHeroesToGenerate, int numberOfVillainsToGenerate) {
         // 1. Settar o nível de dificuldade:
         this.setDifficultyLevel(difficultLevel);
 
         // 2. Criar os Inimigos e Aliados, definir por variável:
-        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(numberOfHerosToGenerate, numberOfVillainsToGenerate);
+        Map<String, Pokemon[]> pokemonsInstanceDict = this.generatePokemons(numberOfHeroesToGenerate, numberOfVillainsToGenerate);
 
         // 3. Salvar o Número de Instâncias:
         setNumberOfHeros(PokeSOX.getNumberOfSOXs());
         setNumberOfVillains(PokeRocket.getNumberOfRockets());
 
         // 4. Separar os heróis e vilões:
-        Pokemon[] herosList = pokemonsInstanceDict.get("Heros");
+        Pokemon[] heroesList = pokemonsInstanceDict.get("Heroes");
         Pokemon[] villainsList = pokemonsInstanceDict.get("Villains");
 
         // 5. Ordenar por Velocidade:
@@ -169,78 +164,22 @@ public class Game {
         // 6. Adicionar as Instâncias à lista:
         this.addInstanceToTreeSet(pokemonsInstanceDict, speedOrderedPokemonsList);
 
-        // 7. Ordem de ataque:
-        gameLog.append("##### Pokémons ordenados por velocidade #####\n");
-        for (Pokemon pokemon : speedOrderedPokemonsList) {
-            gameLog.append(String.format("Nome: %s\nPontos de Velocidade: %s\n\n", pokemon.getPokemonName(), pokemon.getSpeedPoints()));
-        }
+        // 7. Iniciando o Log:
+        Log.startGameLog(speedOrderedPokemonsList);
 
-        // 8. Melhores e piores em campo, no ínicio:
-        gameLog.append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
-        gameLog.append(PokemonAttributes.pokemonBestAttributesInString());
-        gameLog.append(PokemonAttributes.pokemonWorstAttributesInString()).append("\n");
-
-        // 9. Lógica das Batalhas:
-
-        gameLog.append("### BATALHA INICIADA ###\n\n");
-        
-        // Em uma execução não apareceu nada mais estava rodando, verificar a possibilidade de estar travando no loop de alguma forma.
-        // Descobri a fonte do erro, loop infinito pois um personagem que não tinha mais golpes disponiveis foi escolhido.
+        // 8. Lógica das Batalhas:
+        Turn turn = new Turn();
+        Pokemon targetPokemon;
+        DataPokemonAttackClass resultOfAttack;
 
         while (gameState) {
-
-            // 9.5. Lógica do Turno:
+            // 8.5. Lógica do Turno:
             for (Pokemon chosenPokemon : speedOrderedPokemonsList) {
-                turnCounter++;
-
-                if (!isThereAnyoneAlive(herosList) || !anyoneHaveAMoveToUse(herosList)) {
-                    turnLog.append(String.format("\nNível dos heróis: %02d\nNível dos vilões: %02d\n", PokeSOX.getSoxLevel(), PokeRocket.getRocketLevel()));
-                    turnLog.append("\nOs heróis foram derrotados\nOs vilões venceram!!!\n");
-                    gameState = false;
-                    break;
-                } else if (!isThereAnyoneAlive(villainsList) || !anyoneHaveAMoveToUse(villainsList)) {
-                    turnLog.append(String.format("\nNível dos heróis: %02d\nNível dos vilões: %02d\n", PokeSOX.getSoxLevel(), PokeRocket.getRocketLevel()));
-                    turnLog.append("\nOs vilões foram derrotados\nOs heróis venceram!!!\n");
-                    gameState = false;
-                    break;
-                }
-
-                if (chosenPokemon.getSideOfForce() == SideOfForce.DARK) {
-                    resultOfAttack = chosenPokemon.carryOutAttack(Game.selectAPokemon(herosList));
-                } else {
-                    resultOfAttack = chosenPokemon.carryOutAttack(Game.selectAPokemon(villainsList));
-                }
-
-                attackLog = String.format(
-                        "|----------------------| Turno: %05d |----------------------|\n" +
-                        "| %s usou %s!\n" +
-                        "| Resultado do Ataque: %s\n" +
-                        "| Usos restantes: %d\n" +
-                        "| Dano Infligido: %d\n" +
-                        "| Vida de %s: %d\n" +
-                        "| Vida após o Ataque: %d\n" +
-                        "|------------------------------------------------------------|",
-                        turnCounter,
-                        resultOfAttack.pokemonAggressor,
-                        resultOfAttack.skillUsed,
-                        resultOfAttack.hitLevel,
-                        resultOfAttack.remainingUses,
-                        resultOfAttack.inflictedDamage,
-                        resultOfAttack.pokemonAssaulted,
-                        resultOfAttack.healthPointsBeforeAttack,
-                        resultOfAttack.healthPointsAfterAttack
-                );
-
-                turnLog.append(attackLog).append("\n");
+                turn.runTurn(chosenPokemon, heroesList, villainsList);
             }
         }
-        gameLog.append(turnLog);
-
-        // 10. Melhores e piores em campo, no fim:
-        gameLog.append("\n").append("|------------------------------||  Melhores e Piores em Campo  ||------------------------------|\n");
-        gameLog.append(PokemonAttributes.pokemonBestAttributesInString());
-        gameLog.append(PokemonAttributes.pokemonWorstAttributesInString());
-
-        System.out.println(gameLog);
+        Log.addTurnToGameLog();
+        Log.endGameLog();
+        Log.printGameLog();
     }
 }

@@ -25,7 +25,8 @@ public class Pokemon {
     private Type secondaryType; // Tipo do Pokémon.
     private MoveBase[] movements = new MoveBase[3];
     private byte level;
-    SideOfForce sideOfForce;
+    private SideOfForce sideOfForce;
+    private boolean areInConditionToFight;
 
     // Construtor privado para controlar a criação das instâncias.
     protected Pokemon(String pokemonName, short healthPoints, short pokedexNumber, short attackPoints, short defensivePoints, short speedPoints, short dexterityPoints, short specialPoints, PokemonStatus pokemonStatus, Type primaryType, Type secondaryType, MoveBase[] movements, byte level, SideOfForce sideOfForce) {
@@ -43,6 +44,7 @@ public class Pokemon {
         this.movements = movements;
         this.level = level;
         this.sideOfForce = sideOfForce;
+        this.areInConditionToFight = true;
     }
 
     // Getters e Setters da Classe.
@@ -142,6 +144,13 @@ public class Pokemon {
     }
     public void setSideOfForce(SideOfForce sideOfForce) {
         this.sideOfForce = sideOfForce;
+    }
+
+    public boolean getAreInConditionToFight() {
+        return areInConditionToFight;
+    }
+    public void setAreInConditionToFight(boolean areInConditionToFight) {
+        this.areInConditionToFight = areInConditionToFight;
     }
 
     // Funções da Classe:
