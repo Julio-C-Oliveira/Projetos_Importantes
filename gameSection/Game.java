@@ -185,6 +185,7 @@ public class Game {
         gameLog.append("### BATALHA INICIADA ###\n\n");
         
         // Em uma execução não apareceu nada mais estava rodando, verificar a possibilidade de estar travando no loop de alguma forma.
+        // Descobri a fonte do erro, loop infinito pois um personagem que não tinha mais golpes disponiveis foi escolhido.
 
         while (gameState) {
 
