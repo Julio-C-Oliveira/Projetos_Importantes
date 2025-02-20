@@ -86,3 +86,8 @@ Repositório criado para armazenar os trabalhos da diciplina Programação II
 		- [x] Menor Velocidade.
 	- [x] Atacar o mesmo inimigo.
 8. Realizar tratamento de exceções sempre que achar necessário. (Feito).
+9. Extras:
+	- [ ] Adicionar ao ataque um aviso caso o oponente tenha imunidade.
+	- [ ] Terminar de parametrizar os movimentos.
+	- [ ] Terminar de parametrizar os tipos de pokémons.
+	- [ ] Adicionar o cast dos efeitos colaterais dos movimentos dos pokémons.
