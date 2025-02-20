@@ -286,14 +286,14 @@ public class Pokemon {
             // Tinha esquecido do dano da habilidade, vou mudar para: ((Meu ataque / defesa do inimigo) * Poder do Ataque)
             // damageInflicted = (this.getAttackPoints() * this.getSpecialPoints() / 2) / target.getDefensivePoints();
 
-            damageInflicted = (int) ( ((float) target.getLevel() / this.getLevel()) * ((float) this.getAttackPoints() / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
+            damageInflicted = (int) ( ((float) this.getLevel() / target.getLevel()) * ((float) this.getAttackPoints() / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
             resultOfAttack.hitLevel = Effectiveness.ACERTOU;
         } else {
             // Cálculo do dano crítico causado: (meu ataque + meu poder) / defesa do inimigo
             // Tinha esquecido do dano da habilidade, vou mudar para: ((Meu ataque + Meu Especial / defesa do inimigo) * Poder do Ataque)
             //damageInflicted = (this.getAttackPoints() * this.getSpecialPoints()) / target.getDefensivePoints();
 
-            damageInflicted = (int) ( ((float) target.getLevel() / this.getLevel()) * (((float) this.getAttackPoints() + this.getSpecialPoints()) / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
+            damageInflicted = (int) ( ((float) this.getLevel() / target.getLevel()) * (((float) this.getAttackPoints() + this.getSpecialPoints()) / target.getDefensivePoints()) * selectedMovement.getBaseDamage());
             resultOfAttack.hitLevel = Effectiveness.CRITICAL_HIT;
         }
 
