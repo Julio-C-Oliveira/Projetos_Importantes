@@ -1,7 +1,13 @@
-Link para o Slide:
+Repositório criado para armazenar os trabalhos da diciplina Programação II
+## Informações Importantes
+**Discentes:**
+- Júlio C. Oliveira
+- Sávio Miranda
+- Luiz Moreira
+
+**Link para o Slide:**
 https://www.canva.com/design/DAGgG2G365I/hnSILpo7AsLpcBLktwrFnA/edit?utm_content=DAGgG2G365I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-Repositório criado para armazenar os trabalhos da diciplina Programação II
 ## Requisitos do Jogo de Turno
 1. Cada héroi e monstro deverá ter, pelo menos os seguintes atributos, (Feito):
 	- [x] Nome.
